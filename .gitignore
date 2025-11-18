@@ -44,5 +44,5 @@ venv/
 
 # Project-specific
 int_data/output/
-# Avoid committing compiled manuscript PDF; source .tex is versioned
-manuscript/main.pdf
+# Keep compiled slides PDF committed (tracked via LFS)
+# slides/digitization_tutorial_slides.pdf

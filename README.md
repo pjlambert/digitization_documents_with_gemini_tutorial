@@ -1,6 +1,6 @@
 # digitization-tutorial
 
-Reproducible digitization workflow (R/Python scripts + manuscript). This repo demonstrates a pipeline to preprocess images/PDFs, run binary and structured OCR/transcription, and extract images and structured data, together with a LaTeX manuscript describing the approach.
+Reproducible digitization workflow (R/Python scripts + slides). This repo demonstrates a pipeline to preprocess images/PDFs, run binary and structured OCR/transcription, and extract images and structured data, together with LaTeX slides describing the approach.
 
 ## Repository structure
 
@@ -14,7 +14,7 @@ Reproducible digitization workflow (R/Python scripts + manuscript). This repo de
   - `06_image_extraction.py` — Image extraction (Python)
 - `raw_data/` — Source PDFs and inputs (tracked with Git LFS)
 - `int_data/` — Intermediate artifacts (images, JSON, CSV). `int_data/output/` contains derived CSVs (ignored by Git by default).
-- `manuscript/` — LaTeX slides/manuscript. Build artifacts are ignored; compiled PDF is ignored by default.
+- `slides/` — LaTeX slides. Built PDF is committed: `slides/digitization_tutorial_slides.pdf` (tracked with Git LFS). Other LaTeX build artifacts remain ignored.
 
 ## Prerequisites
 - Git, Git LFS: https://git-scm.com/ and https://git-lfs.com/
