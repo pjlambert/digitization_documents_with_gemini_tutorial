@@ -1,0 +1,48 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+.venv/
+venv/
+.env
+.mypy_cache/
+.pytest_cache/
+.coverage
+
+# R
+.Rhistory
+.RData
+.Rproj.user/
+
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.maf
+*.mtc*
+*.nav
+*.out
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+
+# Editors/IDEs
+.vscode/
+.idea/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Project-specific
+int_data/output/
+# Avoid committing compiled manuscript PDF; source .tex is versioned
+manuscript/main.pdf

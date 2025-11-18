@@ -1,0 +1,10 @@
+{
+  "timestamp": "2025-11-12T11:55:30.133764",
+  "model": "gemini-2.5-pro",
+  "image_path": "int_data/images/image001_clean.png",
+  "classification": "YES",
+  "full_response": "CLASSIFICATION: YES\nEXPLANATION: The image is a page from an old catalog advertising various types of telephones, such as \"Hand Telephone for Two-Station Line\" and \"Wall Telephones for Several Stations.\" Each product listing includes a clear price in dollars and cents, for example, \"$10.60,\" \"$6.35,\" and \"$3.75 a Pair.\"",
+  "processing_time_seconds": 20.65813398361206,
+  "project_id": "applied-economics-ai",
+  "location": "us-central1"
+}

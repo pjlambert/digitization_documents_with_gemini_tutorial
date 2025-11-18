@@ -1,0 +1,932 @@
+\documentclass{beamer}
+\usetheme{CambridgeUS}
+\setbeamertemplate{headline}{}
+\useinnertheme{circles}
+
+\setbeamersize{text margin left=0.5cm,text margin right=0.5cm}
+
+% Adjust left margin for itemize lists
+\setlength{\leftmargini}{0.5cm}   % First level bullets
+\setlength{\leftmarginii}{0.5cm}  % Second level bullets (nested)
+\setlength{\leftmarginiii}{0.5cm} % Third level bullets (double nested)
+
+\usepackage{graphicx}
+% \usepackage{xcolor}
+\usepackage{smartdiagram}
+\usepackage{ulem}
+\usepackage{changepage}
+\usepackage{amsmath}
+\usepackage[]{natbib}
+\usepackage{hyperref}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{pbox}
+\usepackage{mathtools}
+\usepackage{tikz}
+\usepackage{booktabs}
+\usepackage{accents}
+\usepackage{overpic}
+\usepackage{bbm}
+\usepackage{array}
+\usepackage{makecell}
+\usetikzlibrary{arrows.meta}
+% \usepackage{emoji}
+\usepackage{multicol}
+\usepackage{appendixnumberbeamer}
+
+\setcitestyle{max.names=1,aysep={}}
+
+\pdfstringdefDisableCommands{%
+\def\translate#1{#1}%
+}
+
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{naturalnames}{hyperref}
+
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathreplacing}
+
+\usepackage{xcolor}
+\definecolor{myLightGray}{RGB}{191,191,191}
+\definecolor{myGray}{RGB}{160,160,160}
+\definecolor{myDarkGray}{RGB}{144,144,144}
+\definecolor{myDarkRed}{RGB}{167,114,115}
+\definecolor{myRed}{RGB}{255,58,70}
+\definecolor{myGreen}{RGB}{0,255,71}
+\definecolor{myDarkGreen}{RGB}{0,153,51}
+\definecolor{darkblue}{RGB}{21,107,183}
+\definecolor{darkorange}{RGB}{214,106,2}
+\definecolor{darkgreen}{rgb}{0.0,0.5,0.0}
+\definecolor{UBCblue}{rgb}{0.04706, 0.13725, 0.26667} % UBC Blue (primary)
+\definecolor{UBCgrey}{rgb}{0.3686, 0.5255, 0.6235} % UBC Grey (secondary)
+
+\setbeamercolor{palette primary}{bg=UBCblue,fg=white}
+\setbeamercolor{palette secondary}{bg=UBCgrey,fg=white}
+\setbeamercolor{palette tertiary}{bg=UBCblue,fg=white}
+\setbeamercolor{palette quaternary}{bg=UBCblue,fg=white}
+\setbeamercolor{structure}{fg=UBCblue} % itemize, enumerate, etc
+\setbeamercolor{section in toc}{fg=UBCblue} % TOC sections
+% Override palette coloring with secondary
+\setbeamercolor{subsection in head/foot}{bg=UBCgrey,fg=white}
+\setbeamercolor{frametitle}{fg=UBCblue,bg=UBCblue!15}
+\setbeamercolor{section in head/foot}{bg=UBCblue}
+\setbeamercolor{author in head/foot}{bg=UBCblue}
+\setbeamercolor{date in head/foot}{fg=white}
+
+\usecolortheme[named=UBCblue]{structure}
+
+% Expectation symbol
+\DeclareMathOperator{\E}{\mathbb{E}}
+
+% Bibliography style (comment out if you don't have this file)
+% \bibliographystyle{bibstyle_ECMArevised_for_slides}
+\newcommand\mylabel[2]{\label{#1} \\[-\baselineskip] \tag*{#2\ \hphantom{(\ref{#1})}}}
+\newcommand\mycitet[1]{\citetalias{#1}\ (\citeyear{#1})}
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\makeatletter
+\defbeamertemplate*{title page}{supdefault}[1][]
+{
+  \vbox{}
+  \vfill
+  \begingroup
+    \centering
+    \begin{beamercolorbox}[sep=8pt,center,#1]{title}
+      \usebeamerfont{title}\inserttitle\par%
+      \ifx\insertsubtitle\@empty\relax%
+      \else%
+        \vskip0.25em%
+        {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+      \fi%      
+    \end{beamercolorbox}%
+    \vskip1em\par
+    \begin{beamercolorbox}[sep=8pt,center,#1]{author}
+      \usebeamerfont{author}\insertauthor
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[sep=8pt,center,#1]{institute}
+      \usebeamerfont{institute}\insertinstitute
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[sep=8pt,center,#1]{date}
+      \usebeamerfont{date}\insertdate
+    \end{beamercolorbox}\vskip0.5em
+    {\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic\par}
+  \endgroup
+  \vfill
+}
+
+\defbeamertemplate*{footline}{my infolines theme}
+{
+    \leavevmode%
+    \hbox{%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1ex,right]{white}%
+      \usebeamerfont{date in head/foot}
+      \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+    \end{beamercolorbox}}%
+    \vskip0pt%
+}
+\makeatother
+
+%gets rid of bottom navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+%*******************************************************************************************
+% TITLE PAGE INFORMATION
+%*******************************************************************************************
+\title[Aggregate Consequences of Default Risk]{The Aggregate Consequences of Default Risk:\\
+\medskip Evidence from Firm-level Data}
+\subtitle{}
+\author[Besley, Lambert, Roland, Van Reenen]{
+    Timothy Besley  (LSE) \\
+    \medskip
+    Peter John Lambert  (LSE) \\
+    \medskip
+    Isabelle Roland  (BoE) \\
+    \medskip
+    John Van Reenen  (LSE)
+}
+
+\date{POID November 2025}
+
+\begin{document}
+
+\frame[plain,noframenumbering]{\titlepage}
+
+%*******************************************************************************************
+%DISCLAIMER
+%*******************************************************************************************
+\begin{frame}[plain,noframenumbering]{Disclaimer}
+Any views expressed here are solely those of the authors and do not represent those of (i) the Bank of England or any of its committees, (ii) the Office of National Statistics (ONS), or (iii) the UK Data Service.
+\end{frame}
+
+%*******************************************************************************************
+%PRESENTATION SLIDES
+%*******************************************************************************************
+% \section{Motivation and research question}
+
+\begin{frame}\frametitle{Motivation}\label{motivation}
+\begin{itemize}
+\item Great Recession heightened interest in the role of financial frictions in shaping economic performance
+\vfill
+\item Literature has typically focuses on large firms for which credit terms publicly visible
+\vfill
+\item Separate literature emphasizes misallocation from distortions which are indirectly measured e.g. using manufacturing plant surveys
+\vfill
+\item During COVID Pandemic \& aftermath credit provisions were major policy tool to prevent output collapse
+\vfill
+\item SME credit access remains high priority policy area in UK and elsewhere
+\end{itemize} 
+\vfill
+\hyperlink{literature}{\beamerbutton{Related literature}}
+\hyperlink{contributions}{\beamerbutton{Contributions to literature}}
+\end{frame}
+
+\begin{frame}\frametitle{This paper}\label{this_paper}
+\begin{itemize}
+\item \emph{Develop micro-to-macro model} that uses default risk as a sufficient statistic of firm-level credit frictions
+\vfill
+\item\emph{Novel dataset of firm-level default risk} matched to universe of administrative firm-level data
+\vfill
+\item \emph{Tractable framework $+$ Novel Data} enables us to quantify the aggregate and redistributive role that credit frictions play in the UK before and after GFC
+% \smallskip
+% \item Highlight spill-overs and GE forces under counter factual scenarios, better understanding of targetted policy interventions.
+\vfill
+\item \emph{Covers universe of registered firms} (not just large public entities or manufacturing sector)
+\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{Related literature}\label{literature}
+\small
+\begin{itemize}
+\item \textbf{Impact of Great Recession via financial frictions:} Chodorow-Reich (2014); Huber (2017); Greenstone et al (2014); Bentolila et al (2015); Schivardi et al (2018); Anderson et al (2019), Lambert \& Schindler (2025)
+\item \textbf{Macro-economic effects of credit frictions:} Midrigan \& Xu (2014); Aghion et al (2012, 2014); Moll (2014); Asker et al (2014); \textbf{Gilchrist et al} (2013); Jeong and Townsend (2007); Amaral and Quintin (2010); Buera and Shin (2013); Catherine et al (2018); Anderson et al (2019), Faria-e-Castro, Kozlowski, Majerovitz (2025)
+\item \textbf{Misallocation literature:} Restuccia \& Rogerson (2008); Hsieh \& Klenow (2009, 2014); Bartelsman et al (2013); Asker et al (2014); Hopenhayn (2012, 2014); Baqaee \& Fahri (2019, 2020)
+\item \textbf{Causes of the productivity slowdown:} Gopinath et al (2017); Syverson (2017); Gordon (2016); Brynjolfsson et al (2017); Bloom, Jones, Van Reenen \& Webb (2020), De Ridder (2024)
+\end{itemize}
+\vfill
+\end{frame}
+
+%-------------------------------------------------------------------------------------------
+
+\section{Preview of key results}
+
+\begin{frame}
+\frametitle{Preview of Key Results}
+\begin{itemize}
+    \item Credit frictions \textbf{reduce aggregate economic performance}
+    \smallskip
+    \begin{itemize}
+        \item Annual output would grow $15\text{-}30\%$ if credit frictions relaxed
+        \smallskip
+        \item Rising credit frictions account for an average of $0.4$pp drag on growth since 2008
+    \end{itemize}
+    \vfill
+    \item Credit frictions \textbf{distort industrial composition}
+    \begin{itemize}
+        \item `Construction' and `Information \& Communication' sectors most held back
+        \item Food Services and Professional/Scientific/Technical sectors \emph{benefit} from status-quo distortions
+    \end{itemize}
+    \vfill
+    \item Status quo credit frictions \textbf{significantly advantage larger firms}, while reducing SME output by up to $55\%$
+    \vfill
+    \item Credit frictions \textbf{mostly suppress output via a scale-effect} rather than through misallocatiion
+    \begin{itemize}
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------------------------------------------
+
+\section{Theory}
+
+\begin{frame}\frametitle{Theory: Basic Setup}\label{firm}
+\begin{itemize}
+    \item Microeconomic Heterogeneity:
+    \begin{itemize}
+        \item Firms and lenders interact in a lending game with moral hazard
+        \item Firm-level heterogeneity in productivity and user cost of capital
+        \item Sector-level heterogeneity in production
+    \end{itemize}
+    \vfill
+    \item Distortions:
+    \begin{itemize}
+        \item Idiosyncratic cost-of-capital from moral hazard in lending
+        \item Perceived default risk provide sufficient statistic for capital distortion
+    \end{itemize}
+    \vfill
+    \item Resources:
+    \begin{itemize}
+        \item Aggregate labor supply fixed/exogenous
+        \item Aggregate capital supplied perfectly elastically
+    \end{itemize}
+    \vfill
+\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{Model based measurement of credit frictions ($\tau^K_{nt}$)}
+\begin{itemize}
+\item Simple model of equilibrium credit contracts (Innes, 1990 \& Besley et al, 2012) with moral hazard (unobserved costly managerial effort) micro-founds a measurable proxy for credit friction term $\left( \color{blue}\tau^K_{nt} \color{black} \right )$
+\end{itemize}
+
+\vfill
+
+\textbf{Timing of Lending Contracts}
+\begin{enumerate}
+\item Nature assigns each firm to a bank
+\item Banks offer credit contracts $\{B,R\}$ where borrowing (B) and repayment (R) given firm's outside option
+\item Firm chooses effort given costs of effort
+\item Default occurs with probability $\color{darkgreen}\boldsymbol{\psi}$
+\item If there is no default firms make hiring decisions, produce and repay loans
+\end{enumerate}
+
+\vfill
+
+Solve by backward induction
+\end{frame}
+
+\begin{frame}\frametitle{Theory: Credit frictions}\label{frictions}
+\begin{itemize}
+\item We measure firm-specific credit frictions using micro model
+\vfill
+\item Let $\color{darkgreen}{\boldsymbol{\psi}_{nst}}$ be firms \emph{probability of default} (\%) and $\left( 1-\Delta \right)$ be the recovery rate
+\vfill
+\item Credit friction term computed as:
+\begin{equation*}
+    \color{blue}\tau^K \color{black}\left( \color{darkgreen}{\boldsymbol{\psi}_{nst}}\color{black} \right) =\left [ {1+\frac{\left( \Delta +\rho \right)
+\color{darkgreen}{\boldsymbol{\psi}_{nst}} }{\left( \delta +\rho \right) \left( 1-\color{darkgreen}{\boldsymbol{\psi}_{nst}} \color{black} \right) }} \right ]^{-1}
+\end{equation*}
+which is a decreasing function of the firm's probability of default $0< \color{darkgreen}{\boldsymbol{\psi}_{nst}}\color{black} < 1$.
+\vfill
+\item Allows us to empirically map firms' probability of default $\color{darkgreen}{\boldsymbol{\psi}_{nst}}$ into credit friction term $\color{blue}\tau^K_{nst}$
+\end{itemize}
+\hyperlink{frictions_measurement}{\beamerbutton{Measurement with S\&P's PD Model}}
+\end{frame}
+
+\begin{frame}\frametitle{Theory: Firm-level output}\label{firm}
+\begin{itemize}
+\item Firm $n$  in sector $s$ produces using the production function: 
+\begin{equation*}
+Y_{nst}=\theta _{nst}\left( L_{nt}^{1-\alpha _{s}}K_{nst}^{\alpha
+_{s}}\right) ^{\eta _{s}}
+\end{equation*}
+\item Firm faces wage $\color{red}w_{t}$ and \textbf{firm-specific cost of capital} $\displaystyle\frac{\rho +\delta}{\color{blue}{\tau^K_{nst}}}$.
+\begin{itemize}
+\item $\rho$: time-invariant cost of capital, $\delta$: depreciation rate.
+\item $\color{blue}{0<\tau^K_{nst}\leq 1}$: \textbf{firm-specific credit frictions increase cost of capital}.
+\end{itemize}
+\medskip
+\item Firms choose labor and capital to maximize profits yielding output of:
+\begin{equation*}
+Y_{nst}=a_{s} \: \theta _{nst}^{\frac{1}{1-\eta _{s}}}  \:\left( \color{red}{w_{t}} \color{black}\right) ^{-\frac{%
+\left( 1-\alpha _{s}\right) \eta _{s}}{1-\eta _{s}}} \:  {\left( \color{blue}{\tau_{nst}^{K}} \color{black} \right) ^{\frac{\alpha_{s}\eta _{s}}{1-\eta _{s}}}}
+\end{equation*}
+\vspace{-0.5cm}
+\begin{itemize}
+    \item where $a_{s}$ collects sector-specific exogenous parameters.
+\end{itemize}
+\end{itemize}
+\hyperlink{calibration}{\beamerbutton{Estimating sectoral production parameters}} \hyperlink{production}{\beamerbutton{Production function}}
+\end{frame}
+
+
+\begin{frame}\frametitle{Theory: Sectoral output}\label{sectoral_output}
+\begin{itemize}
+\item Output in sector $s$ is:
+\begin{align*}
+    Y_{st}&=\sum_{n\in \mathcal{S}}Y_{nst}= {\color{red} w_{t}}^{- \left(\frac{\left(
+    1-\alpha _{s}\right) \eta _{s}}{1-\eta _{s}} \right)} A_{s} \color{blue}{T_{st}}\\
+    \text{where} \:\:\:\:\:\color{blue}{T_{st}}  \color{black} &=\sum_{n\in \mathcal{S}}\omega _{nst}( \color{blue}{\tau^K_{nst}}  \color{black})^{\frac{\alpha_{s}\eta_{s}}{1-\eta_{s}}}
+\end{align*} is a \textbf{sufficient statistic for sector-specific distortions}.
+\vfill
+\begin{itemize}
+    \item $\omega_{nst} \equiv \frac{\theta _{nst}^{\frac{1}{1-\eta_s }}}{\sum_{m\in \mathcal{S}}\theta _{mst}^{\frac{1}{1-\eta_s }}}$ is productivity ``weight'' and $A_s$ collects parameters and scales with $N$.
+\end{itemize}
+
+\item Higher sectoral credit frictions (lower $\color{blue}{T_{st}}$)  decrease sectoral output.
+\item But GE effects via wage ($\color{red}{w_{t}}$) also matter!
+\end{itemize}
+\hyperlink{comparative_statics}{\beamerbutton{Comparative statics}}
+\end{frame}
+
+\begin{frame}\frametitle{Theory: Equilibrium wage}
+\begin{itemize}
+\item \textbf{Labour market clearing condition:} Wage equates fixed, exogenous labour supply $(\bar{L}_t)$ with sum of sectoral labour demands.
+\begin{equation*}
+\bar{L}_{t}=\sum_{s} {\color{red} w_{t}} ^{-\left( \frac{1-\alpha _{s}\eta
+_{s}}{1-\eta _{s}}\right) }(1-\alpha _{s})\eta _{s}A _{s} \color{blue}{T_{st}}
+\end{equation*}
+\item \textbf{Credit frictions distort the equilibrium wage}.
+\begin{itemize}
+\item Credit frictions depress demand for labour and reduce equilibrium wage.
+\item Reducing frictions in \emph{one sector} increases equilibrium wage for \emph{all sectors}.
+\end{itemize}
+\bigskip
+\item These \textbf{general equilibrium effects are quantitatively important} and often overlooked.
+\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{Theory: Counterfactual Frictions and Sectoral Output Gap}\label{sectoral_losses}
+\begin{itemize}
+\item \textbf{Low-friction benchmark} for sector $s$ defined as $\color{blue}{\widehat{T}_{st}}$ with associated prevailing wage $\color{red}\widehat{w}_{t}$
+\vfill
+\item Ratio of benchmark output to observed output in sector $s$: 
+\begin{equation*}
+\frac{\widehat{Y}_{st}}{Y_{st}}=\frac{\color{blue}{\widehat{T}_{st}}}{\color{blue}{T_{st}}}\left( \frac{\color{red}{\widehat{w}_{t}}}{\color{red}{w_{t}}}\right) ^{-\left[ \frac{(1-\alpha_{s}) \eta_{s}}{1-\eta_{s}}\right]}
+\end{equation*}
+\vfill
+\item Reducing credit frictions has two sectoral effects:
+\smallskip
+\begin{itemize}
+    \item \textbf{Positive \textcolor{blue}{\textit{direct}} effect as firms enjoy lower cost of capital.} Higher for more capital intensive sectors.
+    \smallskip
+    \item \textbf{Negative \textcolor{red}{\textit{GE}} effect via higher equilibrium wage.} Higher for more labour intensive sectors.
+\end{itemize}
+\end{itemize}
+\vfill
+\hyperlink{sectoral_losses_measurement}{\beamerbutton{Measurement of $(T_{st}/\widehat{T}_{st})$}} \hyperlink{wage_ratio_measurement}{\beamerbutton{Measurement of $(w_{t}/\widehat{w}_{t})$}}
+\end{frame}
+
+\begin{frame}\frametitle{Theory: Aggregate output losses}\label{aggregate_loss}
+\begin{itemize}
+\item Ratio of observed aggregate output to output in the low-friction benchmark:
+\begin{equation*}
+\frac{\widehat{Y_t}}{Y_t} = \sum_s \nu _{st} \left( \frac{\widehat{Y}_{st}}{Y_{st}} \right )
+\end{equation*}
+where $\sum \nu_{st} = 1$ and $\nu _{st} = \frac{Y_{st}}{\sum Y_{st}}$.
+\medskip
+\item \textbf{Output gap} refers to \% change in aggregate output when moving from observed to benchmark economy:
+\begin{equation*}
+\mathcal{G}_{t}= \frac{\widehat{Y}_{t} - Y_{t}}{Y_{t}}
+\end{equation*}
+\end{itemize}
+\hyperlink{aggregate_loss_measurement}{\beamerbutton{Measurement}}
+\end{frame}
+
+
+
+%-------------------------------------------------------------------------------------------
+
+\section{Data}
+
+\begin{frame}\frametitle{Data sources}\label{data}
+\begin{itemize}
+\item \textbf{Business Structure Database (BSD)}:
+\begin{itemize}
+\item Population of registered UK firms, of which we focus on ``market sector".
+\item Data on \textbf{number of employees} and 5-digit UK SIC industry.
+\end{itemize}
+\vfill
+\item \textbf{Annual Business Inquiry/Survey (ABI/ABS)}:
+\begin{itemize}
+\item Data on wage bill and value added to estimate structural parameters, allowing for differences in production parameters across industries. 
+\end{itemize}
+\vfill
+\item \textbf{S\&P PD Model Algorithm}:
+\begin{itemize}
+\item Forward-looking annual estimate of each firm's \textbf{probability of default}.
+\item Firm-level financial statements (from BvD ORBIS) combined with proprietary information on industry risk, macroeconomic risk, sovereign risk, and more.
+\item Calibrated annually using historical data on actual defaults.
+\end{itemize}
+\end{itemize}
+\vfill
+\hyperlink{BSD}{\beamerbutton{Sample size: 26 million firm-year observations for 2004-2019}}
+\end{frame}
+
+\begin{frame}\frametitle{Default Risk rose sharply after 2008 in the UK (employment-weighted mean)}
+\begin{figure}[h!]
+    \centering
+    % \caption{Employment-weighted default risk rose sharply, 2004-2019}
+    \vspace{-0.25cm}
+    \label{fig:pd_time_series}
+    \includegraphics[trim={0cm 0cm 0cm 0.95cm},clip,width=1\textwidth]{figures/02_probability_of_default_without_trend.pdf}
+    % Instead of using \caption*, manually format the note
+    \footnotesize
+    \vspace{0.2cm}
+    \tiny
+    \noindent\parbox{\textwidth}{\textbf{Note:} Calculates the employment-weighted arithmetic mean of `Probability of Default Risk', assessed at the firm-level using S\&P's Default Risk model, widely used by UK lenders.}
+\end{figure}
+\end{frame}
+
+% \begin{frame}\frametitle{Descriptive statistics: Default risk of SMEs versus large firms}
+% \begin{itemize}
+% \begin{columns}
+% \begin{column}{0.3\textwidth}
+% \item Negative relationship between size (employment) and default risk.
+% \bigskip
+% \item Post GFC deterioration in perceived default risk for smaller firms.
+% \begin{itemize}
+% \item Relationship shifts upward more strongly for smaller firms.
+% \end{itemize}
+% \end{column}
+% \begin{column}{0.7\textwidth}
+% \begin{figure}[h!]
+%  \caption{Default risk and firm size}
+%  \vspace{-0.25cm}
+% \includegraphics[trim={0cm 0cm 0cm 0.92cm},clip,width=1\textwidth]{figures/11_firm_size_vs_default_risk.pdf}
+%     \footnotesize
+%     \vspace{0.2cm}
+%     \tiny
+%     \noindent\parbox{\textwidth}{\textbf{Note:} Compares Number of Employees to  `Probability of Default Risk', assessed at the firm-level using S\&P's Default Risk model, widely used by UK lenders.}
+% \end{figure}
+% \end{column}
+% \end{columns}
+% \end{itemize} 
+% \end{frame}
+
+% \begin{frame}\frametitle{Descriptive statistics: Default risk vs business exit rates}
+% \begin{itemize}
+% \begin{columns}
+% \begin{column}{0.3\textwidth}
+% \item Firm's evaluated as higher-risk of default see higher exit rates.
+% \medskip
+% \item For the same default risk, exit rates have actually \emph{decreased} in more recent years.
+% \medskip
+% \item Suggests rising default risk is not explained by increased risk of business failure. 
+% \end{column}
+% \begin{column}{0.6\textwidth}
+% \begin{figure}[h!]
+%  \caption{Default risk and business exit rates}
+%  \vspace{-0.25cm}
+% \includegraphics[trim={0cm 0cm 0cm 0.92cm},clip,width=1\textwidth]{figures/12_business_exit_rate_vs_default_risk.pdf}
+%     \footnotesize
+%     \vspace{0.2cm}
+%     \tiny
+%     \noindent\parbox{\textwidth}{\textbf{Note:} Compares  `Probability of Default', assessed at the firm-level using S\&P's Default Risk model, widely used by lenders; against Business Death rates, calculating within uniformly spaced firm-size bins.}
+% \end{figure}
+% \end{column}
+% \end{columns}
+% \end{itemize} 
+% \end{frame}
+
+\begin{frame}\frametitle{Distribution of Firms by S\&P Credit Score, 2006 vs 2018}
+\begin{figure}
+    \centering
+    \includegraphics[trim={0cm 1cm 0cm 0.95cm},clip,width=0.95\textwidth]{figures/12_firms_vs_credit_score_distributions.pdf}
+    \label{fig:dist_of_credit_score_by_firm}
+    
+    \vspace{0.2cm}
+    \tiny
+    \noindent\parbox{\textwidth}{\textbf{Note:} Figure shows the distribution of firms by S\&P credit scores. The credit rating bins with 1-year probability of default ranges are: aaa-a (0-0.058\%), a- (0.058-0.097\%), bbb+ (0.097-0.16\%), bbb (0.16-0.26\%), bbb- (0.26-0.44\%), bb+ (0.44-0.72\%), bb (0.72-1.19\%), bb- (1.19-1.96\%), b+ (1.96-3.24\%), b (3.24-5.35\%), b- (5.35-8.84\%), ccc+ (8.84-14.61\%), ccc (14.61-24.13\%), ccc- (24.13-39.86\%), cc (39.86-65.84\%), and c (65.84-100\%). Highest ratings have been merged into aaa-to-a to avoid ONS disclosivity thresholds.}
+\end{figure}
+\end{frame}
+
+\begin{frame}\frametitle{Distribution of Employment by S\&P Credit Score, 2006 vs 2018}
+\begin{figure}
+    \centering
+    \includegraphics[trim={0cm 1cm 0cm 0.95cm},clip,width=0.95\textwidth]{figures/11_firm_size_vs_credit_score_distributions.pdf}
+    \label{fig:dist_of_credit_score_by_emp}
+    
+    \vspace{0.2cm}
+    \tiny
+    \noindent\parbox{\textwidth}{\textbf{Note:} Figure shows the distribution of employment by S\&P credit scores. The credit rating bins with 1-year probability of default ranges are: aaa-a (0-0.058\%), a- (0.058-0.097\%), bbb+ (0.097-0.16\%), bbb (0.16-0.26\%), bbb- (0.26-0.44\%), bb+ (0.44-0.72\%), bb (0.72-1.19\%), bb- (1.19-1.96\%), b+ (1.96-3.24\%), b (3.24-5.35\%), b- (5.35-8.84\%), ccc+ (8.84-14.61\%), ccc (14.61-24.13\%), ccc- (24.13-39.86\%), cc (39.86-65.84\%), and c (65.84-100\%). Highest ratings have been merged into aaa-to-a to avoid ONS disclosivity thresholds.}
+\end{figure}
+\end{frame}
+
+\begin{frame}\frametitle{Default risk rise, even relative to D-to-E ratio}
+\begin{figure}[h!]
+ % \caption{Default Risk and Debt-to-Equity Ratio}
+ \vspace{-0.25cm}
+\includegraphics[trim={0cm 0cm 0cm 0.92cm},clip,width=0.9\textwidth]{figures/13_debt_to_equity_vs_default_risk.pdf}
+    \footnotesize
+    \vspace{0.2cm}
+    \tiny
+    \noindent\parbox{\textwidth}{\textbf{Note:} Compares  `Probability of Default', assessed at the firm-level using S\&P's Default Risk model, widely used by lenders; against debt-to-equity ratios.}
+\end{figure}
+\end{frame}
+
+% %-------------------------------------------------------------------------------------------
+
+\section{Key results}
+
+\begin{frame}\frametitle{Taking our model to the data}
+\begin{itemize}
+    \item Default risk measures (from S\&P) provide sufficient statistic for firm-specific credit market distortions.
+    \vfill
+    \item Introduce a ``low credit-friction'' counterfactual.
+    \smallskip
+    \begin{itemize}
+        \item Places a ceiling on firm-level default risk.
+        \smallskip
+        \item Ceiling based on fifth percentile of default risk within each 4-digit SIC industry group.
+        \smallskip
+        \item Roughly speaking, gives all firms no worse than BB- credit score, but leaves better firms as is.
+    \end{itemize}
+    \vfill
+    \item Compare actual economic performance to ``low credit-friction'' benchmark to assess aggregate and distributional effects of distortions.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}\frametitle{Annual output gains obtained in `low-friction counterfactual' rise sharply after GFC}
+\begin{figure}[h!]
+    \centering
+    % \caption{Annual Aggregate Output Gain under `Low Credit Friction' Counterfactual, 2004-2019}
+    % \vspace{-0.35cm}
+    \label{fig:pd_time_series}
+    \includegraphics[trim={0cm 0cm 0cm 1cm},clip,width=1\textwidth]{figures/04_aggregate_output_gains_time_series.pdf}
+    % Instead of using \caption*, manually format the note
+        \footnotesize
+    \vspace{0.1cm}
+    \tiny
+    \noindent\parbox{\textwidth}{\textbf{Note:} Figure reports the percentage increase in annual aggregate output that would be obtained under a `low credit friction' counterfactual in the UK market sector. The counterfactual imposes a ceiling on default risk at the fifth percentile within each 4-digit SIC industry (e.g. is binding for 95\% of firm-year observations).}
+\end{figure}
+\end{frame}
+
+\begin{frame}\frametitle{Credit frictions distort output away from SMEs towards large firms}
+\begin{figure}[h!]
+    \centering
+    % \caption{Change in Output under `Low Friction' Counterfactual, SME vs Large Firms}
+    % \vspace{-0.2cm}
+    \label{fig:pd_time_series}
+    \includegraphics[trim={0cm 0cm 0cm 1cm},clip,width=1\textwidth]{figures/08_output_changes_by_firm_size.pdf}
+    % Instead of using \caption*, manually format the note
+        \footnotesize
+    \vspace{0.1cm}
+    \tiny
+    \noindent\parbox{\textwidth}{\textbf{Note:} Figure reports the percentage change in output for SME firms ($<250$ employees) and Large firms ($\geq250$ employees) when moving to a `low credit friction' counterfactual. Numerical calculations for 2018, across the UK market sector.  Assignment of firm-size group is fixed i.e. no reclassification under counter-factual.}
+\end{figure}
+\end{frame}
+
+\begin{frame}\frametitle{Relaxing credit frictions compresses the firm-size distribution}
+\begin{figure}[h!]
+    \centering
+    % \caption{Employment-share of SMEs and large firms, baseline vs low-friction counterfactual}
+    % \vspace{-0.35cm}
+    \label{fig:pd_time_series}
+    \includegraphics[trim={0cm 0cm 0cm 1cm},clip,width=1\textwidth]{figures/13_emp_share_2018_baseline_vs_cf.pdf}
+    % Instead of using \caption*, manually format the note
+        \footnotesize
+    \vspace{0.1cm}
+    \tiny
+    \noindent\parbox{\textwidth}{\textbf{Note:} Figure reports the percentage point share of total employment by SME and Large Firms. Red line shows the calculated employment share under a `low credit friction' counterfactual in the UK market sector. No firm size reclassification. Calculations from 2018 shown.}
+\end{figure}
+\end{frame}
+
+\begin{frame}\frametitle{Relaxing credit frictions benefits most sectors but reduces output in Hospitality \& Professional sectors}
+\begin{figure}[h!]
+    \centering
+    % \caption{Change in Sectoral Output under `Low Friction' Counterfactual}
+    % \vspace{-0.2cm}
+    \label{fig:pd_time_series}
+    \includegraphics[trim={0cm 0cm 0cm 1cm},clip,width=1\textwidth]{figures/07_output_changes_by_industry.pdf}
+    % Instead of using \caption*, manually format the note
+        \footnotesize
+    \vspace{0.1cm}
+    \tiny
+    \noindent\parbox{\textwidth}{\textbf{Note:} Figure reports the percentage change in sectoral output when moving to a `low credit friction' counterfactual. Numerical calculations for 2018, across the UK market sector.}
+\end{figure}
+\end{frame}
+
+% \begin{frame}\frametitle{Wholesale \& Retail expands employment}
+% \begin{figure}[h!]
+%     \centering
+%     % \caption{Employment-share of Industry Sectors in baseline vs `Low Friction' Counterfactual}
+%     % \vspace{-0.35cm}
+%     \label{fig:pd_time_series}
+%     \includegraphics[trim={0cm 0cm 0cm 1cm},clip,width=1\textwidth]{figures/10_employment_shares_by_industry.pdf}
+%     % Instead of using \caption*, manually format the note
+%         \footnotesize
+%     \vspace{0.1cm}
+%     \tiny
+%     \noindent\parbox{\textwidth}{\textbf{Note:} Figure reports the percentage point share of total employment across SIC industry sectors.  Red line shows the calculated share under a `low credit friction' counterfactual in the UK market sector. Calculations from 2018 shown.}
+% \end{figure}
+% \end{frame}
+
+\begin{frame}\frametitle{General Equilibrium wage effects substantially reduce gains from reducing credit frictions}
+\begin{figure}[h!]
+    \centering
+    % \caption{Growth in Aggregate Output due to relaxing Credit Frictions, with and without GE Effects}
+    % \vspace{-0.35cm}
+    \label{fig:pd_time_series}
+    \includegraphics[trim={0cm 0cm 0cm 1cm},clip,width=1\textwidth]{figures/05_wage_adjustment_comparison.pdf}
+    % Instead of using \caption*, manually format the note
+        \footnotesize
+    \vspace{0.1cm}
+    \tiny
+    \noindent\parbox{\textwidth}{\textbf{Note:} Figure reports the percentage increase in aggregate output under a `low credit-friction' counterfactual.  Red line shows the output increase when we turn off general equilibrium effects i.e. do not allow the wage to rise, blue bars show the full GE effect.}
+\end{figure}
+\end{frame}
+
+\begin{frame}\frametitle{Extensions and Robustness}
+\begin{enumerate}
+\item Alternative definitions of the `low friction' counterfactual
+\vfill
+\item Decomposition in the style of Olly-Pakes (1998)
+\vfill
+\item Allowing for Labor and Capital Frictions
+\vfill
+\item Fixing Aggregate Capital Stock for a `pure reallocation' effect
+\vfill
+\item Turn off sectoral heterogeneity
+\end{enumerate}
+\end{frame}
+
+\begin{frame}\frametitle{Conclusions}
+\begin{itemize}
+\item Build a micro-to-macro model with heterogeneous productivity and cost of capital distortions.
+\begin{itemize}
+    \item Allows for direct and indirect effects of distortions.
+\end{itemize}
+\medskip
+\item Leverage novel micro data on default risk from S\&P algorithm.
+\begin{itemize}
+    \item Tool widely used by lenders.
+    \item Highlights increased default risk post-GFC.
+\end{itemize}
+\medskip
+\item Use model to quantify impact of credit market distortions of $\approx28\%$
+\item The status-quo level of credit market distortions creates winners and losers:
+\begin{itemize}   
+    \item SMEs lose out most, whereas large firms benefit from a distorted (lower) wage level.
+    \item Sectors with higher labour-intensity / lower overall distortions benefit most from status quo.
+\end{itemize}
+\smallskip
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}\frametitle{}
+\centering
+\Huge{Thank you!}
+\end{frame}
+
+%----------------------------------------------------------------------------------------------%BACKUP SLIDES
+%----------------------------------------------------------------------------------------------
+\appendix
+
+
+\begin{frame}\frametitle{Related literature}\label{literature}
+\begin{itemize}
+\item \textbf{Impact of GFC on economic activity via financial frictions}
+\begin{itemize}
+\item Chodorow-Reich (2014); Huber (2018); Greenstone et al (2014); Bentolila et al (2015); Schivardi et al (2018); Anderson et al (2019).
+\end{itemize}
+\item \textbf{Aggregate consequences of firm-level distortions}
+\begin{itemize}
+\item Midrigan and Xu (2014); Aghion et al (2012, 2014); Moll (2014); Asker et al (2014); Gilchrist et al (2013); Jeong and Townsend (2007); Amaral and Quintin (2010); Buera and Shin (2013); Catherine et al (2018); Anderson et al (2019).
+\end{itemize}
+\item \textbf{Misallocation literature}
+\begin{itemize}
+\item Restuccia \& Rogerson (2008); Hsieh \& Klenow (2009, 2014); Bartelsman et al (2013); Asker et al (2014); Hopenhayn (2012, 2014); Baqaee and Fahri (2019, 2020).
+\end{itemize}
+\item \textbf{Causes of the productivity slowdown}
+\begin{itemize}
+\item Gopinath et al (2017); Syverson (2017); Gordon (2016); Brynjolfsson et al (2017); Bloom, Jones, Van Reenen and Webb (2020).
+\end{itemize}
+\end{itemize}
+\hyperlink{motivation}{\beamerbutton{Back}}
+\end{frame}
+
+\begin{frame}\frametitle{Contributions to the literature}\label{contributions}
+\begin{itemize}
+\item \textbf{Tractable framework to document the macroeconomic impact of credit frictions}.
+\begin{itemize}
+\item Parsimonious data requirements: employment and default risk.
+\end{itemize}
+\item \textbf{Zoom in on credit frictions and measure them directly} - unlike traditional approach based on the marginal product of capital (e.g., Hsieh \& Klenow, 2009, Gopinath et al, 2017).
+\begin{itemize}
+\item Standard approach picks up a wider range of distortions (black box).
+\item Standard approach is subject to severe measurement errors in capital and value added.
+\item Employment is measured more accurately than capital and value added.
+\end{itemize}
+\item \textbf{Default risk is central to our framework}.
+\begin{itemize}
+\item Dominant approach in the macroeconomic literature on credit market distortions also focuses on frictions due to ex-post moral hazard, but does not have any default in equilibrium (e.g., Midrigan and Xu, 2014, Buera and Shin, 2013).
+\end{itemize}
+\end{itemize}
+\hyperlink{motivation}{\beamerbutton{Back}}
+\end{frame}
+
+\begin{frame}{Sector-specific distortions: Comparative statics for $\alpha_s$ and $\eta_s$}\label{comparative_statics}
+\begin{itemize}
+\item Reducing firm-level frictions (increasing $\tau^K_{nst}$) reduces sectoral frictions (increases $T_{st}$) by more when the sector is more capital intensive (higher $\alpha_s$).
+\smallskip
+\item Impact of $\eta_s$ is ambiguous because $\eta_s$ affects the productivity weights $\omega_{nst}$.
+\begin{itemize}
+\item $\omega_{nst}$ increases in $\eta_s$ if firm $n$'s productivity ($\theta_{nst}$) is higher than the average productivity of firms in the sector.
+ \item Conversely, $\omega_{nst}$ decreases in $\eta_s$ if firm $n$'s productivity ($\theta_{nst}$) is lower than the average productivity of firms in the sector.
+ \item Intuition: A higher $\eta_s$ (which increases the exponent $\frac{1}{1-\eta_s}$) amplifies existing productivity differences, leading to a greater concentration of output share among more productive firms.
+ \end{itemize}
+  \end{itemize}
+\hyperlink{sectoral_output}{\beamerbutton{Back}}
+\end{frame}
+
+\begin{frame}\frametitle{Production function}\label{production}
+\begin{itemize}
+\item This is essentially a Lucas (1978) span of control model where the source of decreasing returns is on the production side and is linked to limits to managerial time.
+\bigskip
+\item Hopenhayn (2014) and Hsieh and Klenow (2009) show that this is equivalent to a model with monopolistic competition where $\eta = 1- \frac{1}{\epsilon}$ and  $\epsilon$ is the elasticity of demand.
+\end{itemize}
+\hyperlink{firm}{\beamerbutton{Back}}
+\end{frame}
+
+\begin{frame}\frametitle{Sample size - Universe of registered firms in the market sector}\label{BSD}
+\begin{table} 
+\tiny
+\begin{tabular}{@{}lcccccccc@{}}
+\toprule
+& \multicolumn{2}{c}{All} & \multicolumn{3}{c}{SME} & \multicolumn{3}{c}{Large} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-6} \cmidrule(lr){7-9}
+Year & Employment & Firms & Employment & \makecell{\% of \\ Employment} & Firms & Employment & \makecell{\% of \\ Employment} & Firms \\
+\midrule
+2003 & 15,106,365 & 1,349,696 & 8,039,457 & 53.22 & 1,344,416 & 7,066,908 & 46.78 & 5,280 \\
+2004 & 14,964,551 & 1,376,901 & 7,888,049 & 52.71 & 1,371,752 & 7,076,502 & 47.29 & 5,149 \\
+2005 & 14,904,267 & 1,393,810 & 7,826,383 & 52.51 & 1,388,758 & 7,077,884 & 47.49 & 5,052 \\
+2006 & 14,991,964 & 1,411,649 & 7,874,549 & 52.53 & 1,406,646 & 7,117,415 & 47.47 & 5,003 \\
+2007 & 14,904,124 & 1,380,881 & 7,766,348 & 52.11 & 1,375,982 & 7,137,776 & 47.89 & 4,899 \\
+2008 & 15,354,987 & 1,427,139 & 7,988,488 & 52.03 & 1,422,190 & 7,366,499 & 47.97 & 4,949 \\
+2009 & 15,358,240 & 1,396,289 & 7,963,124 & 51.85 & 1,391,332 & 7,395,116 & 48.15 & 4,957 \\
+2010 & 14,832,258 & 1,356,886 & 7,735,769 & 52.16 & 1,352,237 & 7,096,489 & 47.84 & 4,649 \\
+2011 & 14,498,250 & 1,322,655 & 7,506,644 & 51.78 & 1,318,067 & 6,991,606 & 48.22 & 4,588 \\
+2012 & 14,777,566 & 1,358,590 & 7,689,252 & 52.03 & 1,353,916 & 7,088,314 & 47.97 & 4,674 \\
+2013 & 14,973,057 & 1,372,654 & 7,775,166 & 51.93 & 1,367,927 & 7,197,891 & 48.07 & 4,727 \\
+2014 & 15,654,351 & 1,442,619 & 8,074,369 & 51.58 & 1,437,697 & 7,579,982 & 48.42 & 4,922 \\
+2015 & 16,129,897 & 1,497,406 & 8,381,398 & 51.96 & 1,492,259 & 7,748,499 & 48.04 & 5,147 \\
+2016 & 16,423,182 & 1,566,935 & 8,515,479 & 51.85 & 1,561,636 & 7,907,703 & 48.15 & 5,299 \\
+2017 & 16,790,430 & 1,644,546 & 8,787,745 & 52.34 & 1,639,187 & 8,002,685 & 47.66 & 5,359 \\
+2018 & 17,142,192 & 1,670,645 & 8,930,932 & 52.10 & 1,665,037 & 8,211,260 & 47.90 & 5,608 \\
+2019 & 17,459,691 & 1,731,074 & 9,067,709 & 51.94 & 1,725,310 & 8,391,982 & 48.06 & 5,764 \\
+\midrule
+All & 281,851,117 & 26,488,767 & 147,031,930 & 52.17 & 26,396,892 & 134,819,187 & 47.83 & 91,875 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\hyperlink{data}{\beamerbutton{Back}}
+\end{frame}
+
+\begin{frame}\frametitle{Estimating production parameters $\left(\eta_s,\alpha_s\right)$ with ABI/ABS data}\label{calibration}
+\begin{itemize}
+\item \textbf{Calibrate sector-specific production parameters using two moments from ABI/ABS}:
+\begin{equation*}
+     \alpha_s = \frac{\beta_s(1-\chi_s)}{\beta_s+\chi_s}, \: \: \eta_s = \frac{\chi_s + \beta_s}{1+\beta_s}
+\end{equation*}
+\item $\chi_s$ is the sectoral labour share obtained as:
+\begin{equation*}
+\chi_s = \frac{\sum_{n\in \mathcal{S}}{\text{WageBill}_{nst}}}{\sum_{n\in \mathcal{S}}{ValueAdded_{nst}}}
+\end{equation*}
+\item $\beta_s =\frac{\alpha_s \eta_s}{1-\eta_s} $ is estimated from an OLS regression which recovers the elasticity of labour wrt the capital distortion term in each sector $s$:
+\begin{equation*}
+    \log(L_{nst}) = \beta_s \log \left ( \tau_{nst}^K \right ) + \iota_{\text{year}} + \iota_{\text{industry}} + \varepsilon_{i,t}
+\end{equation*}
+\end{itemize}
+\hyperlink{firm}{\beamerbutton{Back}}
+\end{frame}
+
+\begin{frame}\frametitle{Estimating production parameters $\left(\eta_s,\alpha_s\right)$}
+\small
+\begin{table}
+    \centering
+    \caption{Microeconometric Estimates of Production Parameters}
+    \label{tab:calibration_results}
+    \resizebox{\linewidth}{!}{%
+    \begin{tabular}{lcccccc}
+        \toprule
+        & (1) & (2) & (3) & (4) & (5) & (6)\\
+        & \makecell{Sample \\ Size} & \makecell{Labor \\ Share} & \makecell{Regression \\ Coefficient} & \makecell{Standard \\ Error} & \multicolumn{2}{c}{\makecell{Implied \\ Parameters}} \\
+        Industry Section: & $n$ & $\chi_s$ & $\widehat{\beta_s}$ & $SE(\widehat{\beta_s})$ & $\alpha_s$ & $\eta_s$ \\
+        \midrule
+        C: Manufacturing & 118,187 & 0.48 & 1.41 & 0.02 & 0.39 & 0.78 \\
+        F: Construction &  55,045 & 0.47 & 1.52 & 0.03 & 0.41 & 0.79 \\
+        G: Wholesale and retail trade & 152,499 & 0.44 & 1.90 & 0.03 & 0.46 & 0.81 \\
+        H: Transportation and storage &  26,050 & 0.54 & 1.94 & 0.06 & 0.36 & 0.84 \\
+        I: Accommodation and food service &  26,937 & 0.58 & 1.70 & 0.06 & 0.31 & 0.85 \\
+        J: Information and communication &  35,788 & 0.46 & 1.35 & 0.04 & 0.40 & 0.77 \\
+        M: Professional, scientific and technical &  51,936 & 0.62 & 1.50 & 0.04 & 0.27 & 0.85 \\
+        N: Administrative and support service &  46,554 & 0.57 & 1.47 & 0.04 & 0.31 & 0.83 \\
+        \midrule
+        All Industries: & 512,996 & 0.50 & 1.62 & 0.01 & 0.38 & 0.81 \\
+        \midrule
+        Standard Calibration values: & - & 0.57 & 1.89 & - & 0.33 & 0.85 \\
+        \bottomrule
+    \end{tabular}
+    }
+    % \tiny
+    % \floatfoot{\textbf{Note:} This table reports the results of our estimation of sector-specific production parameters $\alpha_s$ and $\eta_s$.  We estimate these parameters separately for each sector section (defined by UK SIC 2007 section groups). Column (1) reports the sample size and column (2) labor share of value added. Column (3) reports the OLS coefficient of the elasticity of employment ($log(L_{nst})$) with respect to the capital distortion term ($log(\tau_{nst}^K)$). This is from firm level panel data with four digit industry and time dummies. Column (4) are the standard errors (clustered at the firm level) from this regression.  We then use equation (\ref{eq:alpha_eta}) to identify the structural parameters reported in columns (4) and (5). ``All Industries'' are the results when pooled across all industries. The final row reports commonly used standard calibration values in the literature.}
+\end{table}
+\hyperlink{firm}{\beamerbutton{Back}}
+\end{frame}
+
+
+\begin{frame}\frametitle{Measurement: Firm-level distortions $\tau_{nst}^K$}\label{frictions_measurement}
+\begin{itemize}
+\item Theoretical distortion:
+\begin{equation*}
+\tilde{\tau}\left( \color{darkgreen}{\boldsymbol{\psi}_{nst}} \right) =\frac{1}{1+\frac{\left( \Delta +\rho \right)
+\left( 1-\color{darkgreen}{\boldsymbol{\psi}_{nst}} \right) }{\left( \delta +\rho \right) \color{darkgreen}{\boldsymbol{\psi}_{nst}} }}<1
+\end{equation*}
+\item Empirical equivalent:
+\begin{equation*}
+\tau_{nst}^K = \tilde{\tau}\left(\color{darkgreen}{\boldsymbol{\psi}_{nst}}_{nst} \right) =\frac{1}{1+\frac{\left( 1
++\rho \right) \left( 1-\color{darkgreen}{\boldsymbol{\psi}_{nst}}_{nst} \right) }{\left( \delta +\rho \right) \color{darkgreen}{\boldsymbol{\psi}_{nst}}_{nst} }}
+\label{distortion}
+\end{equation*}
+\begin{itemize}
+\item $(1 - \color{darkgreen}{\boldsymbol{\psi}_{nst}}_{nst})$: Estimated PD from S\&P's PD Model.
+\item $\rho=\delta=0.05$ and $\Delta=1$ (collateral not recoverable).
+\end{itemize}
+\end{itemize}
+\hyperlink{frictions}{\beamerbutton{Back}}
+\end{frame}
+
+\begin{frame}\frametitle{Measurement of $\frac{T_{st}}{\widehat{T}_{st}}$}\label{sectoral_losses_measurement}
+\begin{itemize}
+\item Sectoral credit frictions are:
+\begin{equation*}
+T_{st}=\sum_{n \in \mathcal{S}}\omega _{nst}\tilde{\tau}\left(\color{darkgreen}{\boldsymbol{\psi}_{nst}}_{nst} \right) ^{\frac{\alpha _{s}\eta _{s}    }{1-\eta _{s}}}  
+\end{equation*}
+\item With productivity weight $\omega_{nst} = \frac{\gamma_{nst} T_{st}}{ \tilde{\tau}\left(\color{darkgreen}{\boldsymbol{\psi}_{nst}}_{nst} \right) ^{\frac{\alpha _{s}\eta _{s}    }{1-\eta _{s}}}}$
+\begin{itemize}
+\item Where $\gamma_{nst}$ is the labor share of firm $n$ in sector $s$.
+\item For given $\gamma_{nst}$, a relatively more constrained firm must be more productive.
+\end{itemize}
+\item Since  $\sum_{n=1}^{N_{st}} \omega_{nst} = 1$, we have:
+\begin{equation*}
+    T_{st} = \left[ \sum_{n \in \mathcal{S}} {\gamma_{nst}} \tilde{\tau}\left(\color{darkgreen}{\boldsymbol{\psi}_{nst}}_{nst} \right) ^{-\frac{\alpha _{s}\eta _{s}    }{1-\eta _{s}}} \right ]^{-1} \label{eq:sectoral_distortions_measured} 
+\end{equation*}
+\item $\widehat{T}_{st}$: Each firm's default risk cannot exceed the \nth{5} percentile of the unweighted distribution \textit{within} each industry by year cell.
+\end{itemize}
+\hyperlink{sectoral_losses}{\beamerbutton{Back}}
+\end{frame}
+
+\begin{frame}\frametitle{Measurement of $\frac{\widehat{w_{t}}}{w_{t}}$}\label{wage_ratio_measurement}
+\begin{itemize}
+\item Re-write market clearing condition as:
+\begin{equation*}
+1 = \sum_{s=1}^S \left \{ \Gamma_{ts} \left ( \frac{\widehat{w}_{t}}{w_{t}} \right ) ^{-\frac{1-\alpha_s \eta_s}{1-\eta_s}} \left ( \frac{\widehat{T}_{st}}{ T_{st}} \right ) \right \} 
+\end{equation*}
+\item Where $\Gamma_{ts}=\frac{L_{ts}}{L_t}$ is the share of aggregate employment in sector $s$.
+\item Solve numerically for $\frac{\widehat{w_{t}}}{w_{t}}$ given $\frac{T_{st}}{\widehat{T}_{st}}$ and $\Gamma_{ts}$.
+\end{itemize}
+\hyperlink{sectoral_losses}{\beamerbutton{Back}}
+\end{frame}
+
+\begin{frame}\frametitle{Measurement: Aggregate output losses}\label{aggregate_loss_measurement}
+\begin{itemize}
+\item Aggregate output losses can be re-written as a function of observables:
+\begin{equation*}
+\frac{\widehat{Y}_{t}-Y_{t}}{\widehat{Y}_{t}}=1-\frac{\sum_{s=1}^{S}\left\{ 
+\frac{\Gamma _{ts}}{(1-\alpha _{s})\eta _{s}}\right\} }{%
+\sum_{s=1}^{S}\left\{ \frac{\Gamma _{ts}}{(1-\alpha _{s})\eta _{s}}%
+\left( \frac{\widehat{w_{t}}}{w_{t}}\right) ^{-\frac{(1-\alpha _{s})\eta _{s}%
+}{1-\eta _{s}}}\left( \frac{\widehat{T}_{ts}}{T_{ts}}\right) \right\} }
+\label{eq:output_losses}
+\end{equation*}
+\item where $\Gamma_{ts}=\frac{L_{ts}}{L_t}$ is the share of aggregate employment in sector $s$ in year $t$.
+\end{itemize}
+\hyperlink{aggregate_loss}{\beamerbutton{Back}}
+\end{frame}
+
+\end{document}
+
+
+
+
+
+

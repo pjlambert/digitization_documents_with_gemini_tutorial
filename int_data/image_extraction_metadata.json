@@ -1,0 +1,229 @@
+{
+  "timestamp": "2025-11-12T13:46:34.138243",
+  "model": "gemini-2.5-pro",
+  "source_image": "int_data/images/image001_clean.png",
+  "source_dimensions": {
+    "width": 2559,
+    "height": 3266
+  },
+  "improvements": {
+    "version": "v4 - Precision + Deduplication",
+    "pass1": "Coarse detection on full page with tight box prompting",
+    "deduplication": "IoU-based NMS to remove overlapping boxes (threshold=0.5)",
+    "pass2": "Zoom & rebox on expanded crop for precise alignment",
+    "tighter_boxes": "Explicit tight boxing rules with decimal precision",
+    "structured_output": "Schema-enforced JSON with temperature=0",
+    "coordinate_precision": "Float precision maintained until final pixel conversion",
+    "expansion_margin": "10% for refinement context"
+  },
+  "coordinate_system": "Gemini object detection: [ymin, xmin, ymax, xmax] normalized to 0-1000",
+  "thinking_disabled": true,
+  "total_images_extracted": 9,
+  "processing_time": {
+    "pass1_detection_seconds": 44.33087992668152,
+    "pass2_refinement_seconds": 104.81448602676392,
+    "total_seconds": 149.14573907852173
+  },
+  "extracted_images": [
+    {
+      "image_id": 1,
+      "filename": "image_001.png",
+      "label": "Telephone wall box",
+      "confidence_score": 0.98,
+      "bounding_box_original_normalized": [
+        280,
+        88,
+        388,
+        148
+      ],
+      "bounding_box_refined_pixels": {
+        "xmin": 226,
+        "ymin": 879,
+        "xmax": 395,
+        "ymax": 988
+      },
+      "dimensions": {
+        "width": 169,
+        "height": 109
+      }
+    },
+    {
+      "image_id": 2,
+      "filename": "image_002.png",
+      "label": "Hand telephone",
+      "confidence_score": 0.98,
+      "bounding_box_original_normalized": [
+        258,
+        148,
+        350,
+        200
+      ],
+      "bounding_box_refined_pixels": {
+        "xmin": 365,
+        "ymin": 813,
+        "xmax": 478,
+        "ymax": 1096
+      },
+      "dimensions": {
+        "width": 113,
+        "height": 283
+      }
+    },
+    {
+      "image_id": 3,
+      "filename": "image_003.png",
+      "label": "Wall telephone",
+      "confidence_score": 0.97,
+      "bounding_box_original_normalized": [
+        204,
+        810,
+        348,
+        926
+      ],
+      "bounding_box_refined_pixels": {
+        "xmin": 2099,
+        "ymin": 690,
+        "xmax": 2356,
+        "ymax": 1002
+      },
+      "dimensions": {
+        "width": 257,
+        "height": 312
+      }
+    },
+    {
+      "image_id": 4,
+      "filename": "image_004.png",
+      "label": "Four-button wall telephone",
+      "confidence_score": 0.98,
+      "bounding_box_original_normalized": [
+        428,
+        376,
+        558,
+        500
+      ],
+      "bounding_box_refined_pixels": {
+        "xmin": 973,
+        "ymin": 1407,
+        "xmax": 1271,
+        "ymax": 1704
+      },
+      "dimensions": {
+        "width": 298,
+        "height": 297
+      }
+    },
+    {
+      "image_id": 5,
+      "filename": "image_005.png",
+      "label": "Single-button wall telephone",
+      "confidence_score": 0.98,
+      "bounding_box_original_normalized": [
+        428,
+        528,
+        558,
+        652
+      ],
+      "bounding_box_refined_pixels": {
+        "xmin": 1323,
+        "ymin": 1400,
+        "xmax": 1603,
+        "ymax": 1714
+      },
+      "dimensions": {
+        "width": 280,
+        "height": 314
+      }
+    },
+    {
+      "image_id": 6,
+      "filename": "image_006.png",
+      "label": "Wall telephone",
+      "confidence_score": 0.97,
+      "bounding_box_original_normalized": [
+        624,
+        88,
+        760,
+        240
+      ],
+      "bounding_box_refined_pixels": {
+        "xmin": 257,
+        "ymin": 2079,
+        "xmax": 480,
+        "ymax": 2419
+      },
+      "dimensions": {
+        "width": 223,
+        "height": 340
+      }
+    },
+    {
+      "image_id": 7,
+      "filename": "image_007.png",
+      "label": "Impedance coil",
+      "confidence_score": 0.99,
+      "bounding_box_original_normalized": [
+        624,
+        512,
+        670,
+        612
+      ],
+      "bounding_box_refined_pixels": {
+        "xmin": 1403,
+        "ymin": 2028,
+        "xmax": 1592,
+        "ymax": 2144
+      },
+      "dimensions": {
+        "width": 189,
+        "height": 116
+      }
+    },
+    {
+      "image_id": 8,
+      "filename": "image_008.png",
+      "label": "Push-button wall telephone",
+      "confidence_score": 0.98,
+      "bounding_box_original_normalized": [
+        632,
+        788,
+        792,
+        924
+      ],
+      "bounding_box_refined_pixels": {
+        "xmin": 2005,
+        "ymin": 2072,
+        "xmax": 2360,
+        "ymax": 2406
+      },
+      "dimensions": {
+        "width": 355,
+        "height": 334
+      }
+    },
+    {
+      "image_id": 9,
+      "filename": "image_009.png",
+      "label": "Magneto wall telephone",
+      "confidence_score": 0.98,
+      "bounding_box_original_normalized": [
+        800,
+        344,
+        932,
+        500
+      ],
+      "bounding_box_refined_pixels": {
+        "xmin": 895,
+        "ymin": 2624,
+        "xmax": 1245,
+        "ymax": 2992
+      },
+      "dimensions": {
+        "width": 350,
+        "height": 368
+      }
+    }
+  ],
+  "project_id": "applied-economics-ai",
+  "location": "us-central1"
+}

@@ -1,0 +1,56 @@
+{
+  "timestamp": "2025-11-12T12:01:21.711420",
+  "model": "gemini-2.5-pro",
+  "image_path": "int_data/images/image001_clean.png",
+  "product_count": 9,
+  "products": [
+    {
+      "product_name": "Hand Telephone for Two-Station Line",
+      "description": "A very compact, thoroughly high grade hand telephone that can be placed on a table or hung on the wall. The rectangular box contains a calling buzzer and has a hook for hanging up the phone. However, it is not necessary to hang it up to shut off the phone; just lay it on the table. If you want to call the other station, just press the little button in the handle. It can be used in pairs or in connection with Wall Phone No. 57H5590 at right. Order four dry batteries and enough wire, No. 57H7919 or No. 57H7920, page 29, to run between the two stations. It will operate 600 feet with No. 18 gauge wire or longer distances with larger wire. No. 57H5595 Two-Station Hand Telephone Sets. Shipping weight, 5 pounds. No. 57H5596 Two-Station Hand Telephone Sets. Shipping weight, 15 pounds. No. 57H5593½ One Hand Set and One Wall Telephone. Shipping weight, 5¼ pounds.",
+      "price": "Price, per pair, without batteries or wire.....$10.60, Price, per pair, with four Stand-By dry batteries, but no wire... ...$11.60, Price, without batteries or wire..$8.47"
+    },
+    {
+      "product_name": "Wall Telephone for Two-Station Line",
+      "description": "A very efficient and nice appearing telephone built for single line service with a station at each end. The material, workmanship and finish are strictly high grade throughout. Will not detract from the appearance of any room in which you may install it. It will ring satisfactorily over lines of 600 feet on using our No. 57H7919 or No. 57H7920 Twisted Pair Wire (only one length needed), and four dry batteries, shown on page 18 (longer distances require larger gauge wire). One of these can be used with one of the hand telephones, No. 57H5595, at the left. No. 57H5590 Two-Station Wall Telephones. Shipping weight, 5½ pounds. No. 57H5591 Two-Station Wall Telephones. Shipping weight, 16 pounds. No. 57H5593½ Wall Telephone and One Hand Telephone. Shipping weight, 5¼ pounds.",
+      "price": "Price, per pair, without batteries or wire. $6.35, Price, per pair, with four Stand-By dry batteries, but no wire.. .$7.35, Price, without batteries or wire...........$8.47"
+    },
+    {
+      "product_name": "Four-Button Type.",
+      "description": "This telephone is the same as No. 57H5598 shown to the right, except that it has four buttons and can be used for a five-station line. Pressing one of the buttons at your station rings the bells on only one of the other four phones. For the necessary wire, measure from the first station to the last in a continuous line, touching at all the stations. Multiply the total distance by the number of stations plus three. For instance, for four telephones, multiply the distance by seven. Order wire No. 57H7900 or No. 57H7902 on page 19. One impedance coil such as No. 57H5650 shown below and five dry cells are required for a system of three to five phones. All parts of these phones are carefully designed, correctly made, and beautifully finished in dull black and nickel. No. 57H5599 Four-Button Wall Telephone. Shipping weight, about 3 pounds.",
+      "price": "Price, each, without wire, batteries or impedance coil ..$5.30"
+    },
+    {
+      "product_name": "Single-Button Type.",
+      "description": "This type of telephone is intended for lines of three to six telephones. Pressing the button at any one of the stations rings all the bells. Use a code system of ringing, such as one ring for the kitchen, two rings for upstairs, three for the basement, four for the garage, etc. For the necessary wire, measure from the first station to the last in a continuous line, touching at all stations. Three wires must be used, hence multiply the distance by three. Our No. 57H7900 or No. 57H7902 shown on page 19 can be used when the distance between first and last phones is not over 600 feet. One impedance coil such as No. 57H5650 shown below and five dry cells are required for every system of three to six phones. These telephones are sturdily built and beautifully finished in dull black and nickel. Very compact; back of box, 4¼x6¾ inches. No. 57H5598 Single-Button Wall Telephone. Shipping weight, each, about 3 pounds.",
+      "price": "Price, each, without wire, batteries or impedance coil.. .$4.65"
+    },
+    {
+      "product_name": "Two-Station Phones, $3.75 a Pair",
+      "description": "No. 57H5565 These telephones are not as well built nor as nicely finished as ones listed above. Give service between any two points not over 500 feet apart. Strongly made, remarkably efficient, very compact and finished in black enamel and nickel plate. Easily installed as a door bell—four batteries (any kind, wet or dry), and only two wires required. Use wire such as No. 57H7900 on page 19, or No. 57H7920 on page 29. We furnish wiring directions. Shpg. wt., 5 lbs. No. 57H5566 Battery Phones. Shipping wt., 16 lbs.",
+      "price": "Price, per pair, without batteries... ..$3.75, Price, per pair, with four Red Label Dry Batteries.$4.65"
+    },
+    {
+      "product_name": "Impedance Coils",
+      "description": "No.57H5650 For use with our No. 57H5580, No. 57H5585, No. 57H5598 and No. 57H5599 Home Telephones. One coil required to each system of three to six of the above phones. Shipping wt., about 12 oz.",
+      "price": "Price.60c"
+    },
+    {
+      "product_name": "Intercommunicating Phones",
+      "description": "No. 57H5580 Look exactly like our No. 57H5565 pictured at the left. Constructed to allow three to six phones on a line. All bells ring together, hence different signals should be employed. For the necessary wire measure from the first station to the last on a continuous line touching at all stations and multiply the total distance by 4. Order annunciator wire such as No. 57H7900 on page 19. We furnish wiring directions. One impedance coil, described above, and four or five dry batteries also needed. Shipping weight, about 5 pounds.",
+      "price": "Price, each, without batteries or coil.... ..$2.20"
+    },
+    {
+      "product_name": "Three to Six-Station Private Phones",
+      "description": "No. 57H5585 An inexpensive but serviceable phone, not as well built as our No. 57H5599 nor as nicely finished. Equipped with five push buttons to ring five other phones within a distance of 500 feet. For the necessary wire measure from the first station to the last in a continuous line touching at all the stations. Multiply the total distance by the number of stations, plus 3. For instance, for four phones multiply the distance by 7. Order wire No. 57H7900, on page 19. We send wiring directions. One impedance coil No. 57H5650, described at the left, and four or five dry batteries are also required. Shipping weight, about 5 lbs.",
+      "price": "Price, each.. ..$3.20"
+    },
+    {
+      "product_name": "Series Magneto Phones, $10.80 a Pair.",
+      "description": "No. 57H5570 Built for longer distances than our battery phones and will operate satisfactorily on lines 5 miles in length. Can only be used in pairs. Can be used with copper or iron wire (see page 19 under No. 57H7900 and page 29 under No. 57H7914). Equipped with a high grade transmitter, receiver and a three-magnet pony generator. The cases are of oak, and metal parts are heavily nickel plated. Shipping weight, per pair, 46 pounds. Four dry batteries included with each pair.",
+      "price": "Price, per pair (two telephones). .$10.80"
+    }
+  ],
+  "processing_time_seconds": 84.61022710800171,
+  "project_id": "applied-economics-ai",
+  "location": "us-central1"
+}

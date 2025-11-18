@@ -1,0 +1,852 @@
+\documentclass{beamer}
+\usetheme{CambridgeUS}
+\setbeamertemplate{headline}{}
+\useinnertheme{circles}
+
+\setbeamersize{text margin left=0.5cm,text margin right=0.5cm}
+
+% Adjust left margin for itemize lists
+\setlength{\leftmargini}{0.5cm}   % First level bullets
+\setlength{\leftmarginii}{0.5cm}  % Second level bullets (nested)
+\setlength{\leftmarginiii}{0.5cm} % Third level bullets (double nested)
+
+\usepackage{graphicx}
+\usepackage{smartdiagram}
+\usepackage{ulem}
+\usepackage{changepage}
+\usepackage{amsmath}
+\usepackage[]{natbib}
+\usepackage{hyperref}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{pbox}
+\usepackage{mathtools}
+\usepackage{tikz}
+\usepackage{accents}
+\usepackage{overpic}
+\usepackage{bbm}
+\usepackage{array}
+\usepackage{makecell}
+\usetikzlibrary{arrows.meta}
+\usepackage{multicol}
+\usepackage{appendixnumberbeamer}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\setcitestyle{max.names=1,aysep={}}
+
+\pdfstringdefDisableCommands{%
+\def\translate#1{#1}%
+\def\sout#1{#1}%
+}
+
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{naturalnames}{hyperref}
+
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathreplacing}
+
+\definecolor{myLightGray}{RGB}{191,191,191}
+\definecolor{myGray}{RGB}{160,160,160}
+\definecolor{myDarkGray}{RGB}{144,144,144}
+\definecolor{myDarkRed}{RGB}{167,114,115}
+\definecolor{myRed}{RGB}{255,58,70}
+\definecolor{myGreen}{RGB}{0,255,71}
+\definecolor{myDarkGreen}{RGB}{0,153,51}
+\definecolor{darkblue}{RGB}{21,107,183}
+\definecolor{darkorange}{RGB}{214,106,2}
+\definecolor{darkgreen}{rgb}{0.0,0.5,0.0}
+\definecolor{UBCblue}{rgb}{0.04706, 0.13725, 0.26667} % UBC Blue (primary)
+\definecolor{UBCgrey}{rgb}{0.3686, 0.5255, 0.6235} % UBC Grey (secondary)
+
+\setbeamercolor{palette primary}{bg=UBCblue,fg=white}
+\setbeamercolor{palette secondary}{bg=UBCgrey,fg=white}
+\setbeamercolor{palette tertiary}{bg=UBCblue,fg=white}
+\setbeamercolor{palette quaternary}{bg=UBCblue,fg=white}
+\setbeamercolor{structure}{fg=UBCblue} % itemize, enumerate, etc
+\setbeamercolor{section in toc}{fg=UBCblue} % TOC sections
+\setbeamercolor{subsection in head/foot}{bg=UBCgrey,fg=white}
+\setbeamercolor{frametitle}{fg=UBCblue,bg=UBCblue!15}
+\setbeamercolor{section in head/foot}{bg=UBCblue}
+\setbeamercolor{author in head/foot}{bg=UBCblue}
+\setbeamercolor{date in head/foot}{fg=white}
+
+\usecolortheme[named=UBCblue]{structure}
+
+% Code listing style
+\lstset{
+    basicstyle=\ttfamily\footnotesize,
+    breaklines=true,
+    frame=single,
+    backgroundcolor=\color{gray!10},
+    keywordstyle=\color{darkblue},
+    commentstyle=\color{darkgreen},
+    stringstyle=\color{myDarkRed}
+}
+
+\DeclareMathOperator{\E}{\mathbb{E}}
+
+\newcommand\mylabel[2]{\label{#1} \\[-\baselineskip] \tag*{#2\ \hphantom{(\ref{#1})}}}
+\newcommand\mycitet[1]{\citetalias{#1}\ (\citeyear{#1})}
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\makeatletter
+\defbeamertemplate*{title page}{supdefault}[1][]
+{
+  \vbox{}
+  \vfill
+  \begingroup
+    \centering
+    \begin{beamercolorbox}[sep=4pt,center,#1]{title}
+      \usebeamerfont{title}\inserttitle\par%
+      \ifx\insertsubtitle\@empty\relax%
+      \else%
+        \vskip0.25em%
+        {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+      \fi%      
+    \end{beamercolorbox}%
+    \vskip0.2em\par
+    \begin{beamercolorbox}[sep=3pt,center,#1]{date}
+      \usebeamerfont{date}\insertdate
+    \end{beamercolorbox}\vskip0.2em
+    \begin{beamercolorbox}[sep=3pt,center,#1]{author}
+      \usebeamerfont{author}\insertauthor
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[sep=3pt,center,#1]{institute}
+      \usebeamerfont{institute}\insertinstitute
+    \end{beamercolorbox}
+    \vskip0.3em
+    {\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic\par}
+  \endgroup
+  \vfill
+}
+
+\defbeamertemplate*{footline}{my infolines theme}
+{
+    \leavevmode%
+    \hbox{%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1ex,right]{white}%
+      \usebeamerfont{date in head/foot}
+      \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+    \end{beamercolorbox}}%
+    \vskip0pt%
+}
+\makeatother
+
+%gets rid of bottom navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+%*******************************************************************************************
+% TITLE PAGE INFORMATION
+%*******************************************************************************************
+\title[Foundation LLMs for Digitisation]{Digitization with LLMs:\\Or, How I Learned to Stop Worrying and Love \\\texorpdfstring{\sout{the Bomb}}{the Bomb} Foundation Models}
+\subtitle{}
+\author[Lambert]{Peter John Lambert}
+\vspace{-1cm}
+\institute{}
+\date{CAGE \\ Nov, 2025}
+\titlegraphic{\includegraphics[width=0.5\textwidth]{fun_images/dr_strangelove.jpg}}
+
+\begin{document}
+
+\frame[plain,noframenumbering]{\titlepage}
+
+%*******************************************************************************************
+% PRESENTATION SLIDES
+%*******************************************************************************************
+
+\begin{frame}\frametitle{Data Types}
+\begin{itemize}
+\item \textbf{Unstructured Data}
+\begin{itemize}
+\item Raw text, images, PDFs without organization
+\item No predefined schema
+\item Examples: Scanned catalogs, historical photographs
+\end{itemize}
+\vfill
+\item \textbf{Semi-Structured Data}
+\begin{itemize}
+\item Some organization but not tabular
+\item Examples: JSON, XML, nested dictionaries
+\end{itemize}
+\vfill
+\item \textbf{Structured Data}
+\begin{itemize}
+\item Tidy, tabular format (rows and columns)
+\item Examples: CSV files, spreadsheets, databases
+\end{itemize}
+\vfill
+\item \textbf{Goal}: Transform unstructured data into structured formats for analysis
+\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{History}
+\begin{columns}[T]
+\begin{column}{0.58\textwidth}
+\footnotesize
+\begin{itemize}
+\item \textbf{OCR Models (1990s-2010s)}
+\begin{itemize}
+\item Rule-based, limited to simple layouts
+\item Required clean images
+\item Poor on complex layouts or handwriting
+\end{itemize}
+\vfill
+\item \textbf{Large Language Models (2018-2022)}
+\begin{itemize}
+\item Text-only (GPT-3, BERT)
+\item Powerful language understanding
+\item Could not process images
+\end{itemize}
+\vfill
+\item \textbf{Multimodal Foundation Models (2023-present)}
+\begin{itemize}
+\item Process text and images (GPT-4V, Gemini, Claude)
+\item End-to-end document understanding
+\item Extract, classify, and structure simultaneously
+\item Handle complex layouts and degraded materials
+\end{itemize}
+\end{itemize}
+\end{column}
+\begin{column}{0.38\textwidth}
+\centering
+\includegraphics[width=\textwidth]{fun_images/ocr_rip.png}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}\frametitle{Local vs Served}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\textbf{Local Models}
+\begin{itemize}
+\item Run on your own hardware
+\item Full data control and privacy
+\item No API costs, offline operation
+\item Requires significant compute
+\item Examples: Ollama, LM Studio
+\end{itemize}
+\end{column}
+\begin{column}{0.5\textwidth}
+\textbf{Served Models (Cloud APIs)}
+\begin{itemize}
+\item Accessed via API calls
+\item No local hardware requirements
+\item Pay-per-use pricing
+\item Data sent to external servers
+\item Examples: Gemini, GPT-4, Claude
+\end{itemize}
+\end{column}
+\end{columns}
+\vfill
+\textbf{This Tutorial}: Uses Google's Gemini API
+\begin{itemize}
+\item Powerful multimodal capabilities
+\item Generous free tier for testing
+\item Vertex AI integration for production
+\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{Open vs Closed}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\textbf{Open Source Models}
+\begin{itemize}
+\item Weights publicly available
+\item Can be fine-tuned and modified
+\item Community-driven development
+\item Examples: LLaMA, Mistral
+\item Can run locally or on private cloud
+\end{itemize}
+\end{column}
+\begin{column}{0.5\textwidth}
+\textbf{Closed/Proprietary Models}
+\begin{itemize}
+\item Accessed only via APIs
+\item Weights and architecture private
+\item Often more capable (for now)
+\item Examples: GPT-4, Claude, Gemini
+\item Continuous updates by provider
+\end{itemize}
+\end{column}
+\end{columns}
+\vfill
+\textbf{Considerations}:
+\begin{itemize}
+\item Open models offer transparency and control
+\item Closed models often lead in performance
+\item Choice depends on use case, privacy needs, and budget
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Basic Environment Setup}
+\textbf{1. Set up a conda environment}
+\begin{lstlisting}[language=bash]
+conda create -n digitization python=3.10
+conda activate digitization
+\end{lstlisting}
+\vfill
+\textbf{2. Install required packages}
+\begin{lstlisting}[language=bash]
+pip install google-genai pydantic Pillow
+\end{lstlisting}
+\vfill
+\textbf{3. Set up Google Cloud and activate Gemini API}
+\begin{itemize}
+\item Create a Google Cloud account
+\item Enable Vertex AI API
+\item Set up authentication (see \texttt{00\textunderscore auth.sh})
+\end{itemize}
+\begin{lstlisting}[language=bash]
+export GOOGLE_CLOUD_PROJECT="your-project-id"
+export GOOGLE_CLOUD_LOCATION="us-central1"
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}\frametitle{Basics of Querying an LLM}
+\textbf{Three key components}:
+
+\begin{itemize}
+\item \textbf{1. Choosing a Model}
+\begin{itemize}
+\item Select based on task complexity and cost
+\item \texttt{gemini-2.5-pro}: More capable, higher cost (\$0.007/page)
+\item \texttt{gemini-2.5-flash}: Faster, cheaper (\$0.002/page)
+\item Can switch models for different use cases
+\end{itemize}
+\vfill
+\item \textbf{2. Instructions/Prompt}
+\begin{itemize}
+\item Clear, specific task description
+\item Examples: ``Transcribe all text'', ``Extract product names and prices''
+\item More detailed prompts $\rightarrow$ better results
+\item Iterate and refine based on outputs
+\end{itemize}
+\vfill
+\item \textbf{3. Output Schemas}
+\begin{itemize}
+\item Optional: Define expected output structure
+\item Use Pydantic models for typed, validated responses
+\item Returns JSON matching your schema automatically
+\item Eliminates manual parsing and reduces errors
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{Image Preprocessing}
+\textbf{Good news}: Minimal preprocessing needed for modern LLMs!
+
+\textbf{Key steps} (\texttt{01\textunderscore load\textunderscore light\textunderscore preprocess\textunderscore image.R}):
+\begin{itemize}
+\item \textbf{Light contrast boost}
+\begin{itemize}
+\item Enhance readability without over-processing
+\item Improves extraction accuracy
+\end{itemize}
+\vfill
+\item \textbf{Rotation correction}
+\begin{itemize}
+\item Align text horizontally
+\item Straighten skewed scans
+\end{itemize}
+\vfill
+\item \textbf{That's it!}
+\begin{itemize}
+\item No complex noise reduction needed
+\item No binarization or thresholding
+\item Modern LLMs handle imperfect images well
+\end{itemize}
+\end{itemize}
+\vfill
+\textbf{Philosophy}: Let the model do the heavy lifting
+\end{frame}
+
+\begin{frame}\frametitle{Preprocessing Example: Raw vs Processed}
+\begin{columns}
+\begin{column}{0.48\textwidth}
+\centering
+\textbf{Raw Image}
+\includegraphics[width=\textwidth]{../int_data/images/image001_raw.png}
+\end{column}
+\begin{column}{0.48\textwidth}
+\centering
+\textbf{After Preprocessing}
+\includegraphics[width=\textwidth]{../int_data/images/image001_clean.png}
+\end{column}
+\end{columns}
+\vfill
+\end{frame}
+
+\begin{frame}\frametitle{Use Case 1: Binary Classification - Overview}
+\textbf{Task}: Does the image contain phone prices?
+
+\textbf{Purpose}:
+\begin{itemize}
+\item Filter/triage large document collections
+\item Identify relevant pages before detailed processing
+\item Quality control for digitization
+\end{itemize}
+
+\vfill
+
+\textbf{Key Features}:
+\begin{itemize}
+\item Simple YES/NO decision
+\item Fast and inexpensive (\textasciitilde\$0.001-\$0.003/page)
+\item Process thousands of pages quickly
+\item No schema needed
+\end{itemize}
+
+\vfill
+
+\textbf{Use Cases}:
+\begin{itemize}
+\item Filter pages by content
+\item Classify document types
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Use Case 1: Binary Classification - Prompt}
+\textbf{The Prompt} (\texttt{02\textunderscore binary\textunderscore classify.py}):
+
+\begin{lstlisting}[basicstyle=\ttfamily\scriptsize]
+Analyze this image and perform a binary 
+classification task.
+
+Question: Does this image contain prices 
+of phones (mobile phones, cell phones, 
+telephones)?
+
+Look for:
+- Any images or illustrations of 
+  phones/telephones
+- Price information associated with those phones
+- Price tags, cost listings, or monetary values 
+  near phone products
+
+Answer with a clear YES or NO, followed by a 
+brief explanation.
+
+Format your response as:
+CLASSIFICATION: [YES or NO]
+EXPLANATION: [Brief explanation...]
+\end{lstlisting}
+
+\textbf{Output Format}: Plain text with structured sections
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Use Case 1: Binary Classification - Output}
+\textbf{JSON Output}:
+
+\begin{lstlisting}[basicstyle=\ttfamily\tiny]
+{
+  "timestamp": "2025-11-12T11:55:30.133764",
+  "model": "gemini-2.5-pro",
+  "image_path": "int_data/images/image001_clean.png",
+  "classification": "YES",
+  "full_response": "CLASSIFICATION: YES
+EXPLANATION: The image is a page from an old 
+catalog advertising various types of telephones, 
+such as 'Hand Telephone for Two-Station Line' and 
+'Wall Telephones for Several Stations.' Each 
+product listing includes a clear price in dollars 
+and cents, for example, '$10.60,' '$6.35,' and 
+'$3.75 a Pair.'",
+  "processing_time_seconds": 20.66,
+  "project_id": "applied-economics-ai",
+  "location": "us-central1"
+}
+\end{lstlisting}
+
+\vfill
+
+\textbf{Result}: Clear YES/NO classification with explanation
+\end{frame}
+
+\begin{frame}\frametitle{Use Case 2: Pure Transcription - Overview}
+\textbf{Task}: Extract all text as one continuous block
+
+\textbf{Purpose}:
+\begin{itemize}
+\item Create searchable text from images
+\item Archival digitization
+\item Full-text indexing
+\end{itemize}
+
+\vfill
+
+\textbf{Key Features}:
+\begin{itemize}
+\item No predefined structure needed
+\item Preserves reading order
+\item Captures all text verbatim
+\end{itemize}
+
+\vfill
+
+\textbf{When to Use}:
+\begin{itemize}
+\item Initial document exploration
+\item Full-text search needs
+\item When structure doesn't matter
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Use Case 2: Pure Transcription - Prompt}
+\textbf{The Prompt} (\texttt{03\textunderscore pure\textunderscore transcription.py}):
+
+\begin{lstlisting}[basicstyle=\ttfamily\scriptsize]
+Please transcribe all visible text from this image.
+
+Extract every piece of text you can see, including:
+- All headings and titles
+- Product descriptions
+- Prices and measurements
+- Item numbers
+- Any small text or fine print
+- Headers and footers
+- Page numbers
+- Company names or branding
+
+Output the text as one continuous block, 
+preserving the reading order as much as possible.
+
+Include all text exactly as it appears, maintaining 
+original spelling, punctuation, and formatting.
+\end{lstlisting}
+
+\vfill
+
+\textbf{Output Format}: Single continuous text string
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Use Case 2: Pure Transcription - Output}
+\textbf{Output Structure}:
+\begin{lstlisting}[basicstyle=\ttfamily\tiny]
+{
+  "timestamp": "2025-11-12T12:00:45.123456",
+  "model": "gemini-2.5-pro",
+  "image_path": "int_data/images/image001_clean.png",
+  "transcribed_text": "Hand Telephone for Two-Station 
+Line. A very compact, thoroughly high grade hand 
+telephone that can be placed on a table or hung on 
+the wall. The rectangular box contains a calling 
+buzzer and has a hook for hanging up the phone. 
+However, it is not necessary to hang it up to shut 
+off the phone; just lay it on the table. If you 
+want to call the other station, just press the 
+little button in the handle... [full continuous 
+text extracted from entire page]",
+  "text_length": 4235,
+  "processing_time_seconds": 18.45
+}
+\end{lstlisting}
+
+\textbf{Result}: All text captured in reading order, ready for search/analysis
+\end{frame}
+
+\begin{frame}\frametitle{Use Case 3: Structured Transcription - Overview}
+\textbf{Task}: Extract products with structured fields
+
+\textbf{Purpose}:
+\begin{itemize}
+\item Create queryable, tidy datasets
+\item Enable statistical analysis
+\item Database ingestion
+\end{itemize}
+
+\vfill
+
+\textbf{Key Innovation}:
+\begin{itemize}
+\item Pydantic schemas define output structure
+\item Gemini returns validated JSON automatically
+\item Type-safe and consistent
+\end{itemize}
+
+\vfill
+
+\textbf{When to Use}:
+\begin{itemize}
+\item Need data in specific fields
+\item Quantitative analysis
+\item Database/spreadsheet integration
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Use Case 3: Structured Transcription - Prompt \& Schema}
+\textbf{Pydantic Schema} (\texttt{04\textunderscore struct\textunderscore transcription.py}):
+\begin{lstlisting}[language=Python,basicstyle=\ttfamily\tiny]
+class Product(BaseModel):
+    product_name: str = Field(
+        description="Product name/title verbatim")
+    description: str = Field(
+        description="Full product description verbatim")
+    price: Optional[str] = Field(
+        default=None,
+        description="Price as shown (e.g., '$10.60')")
+
+class ProductList(BaseModel):
+    products: List[Product]
+\end{lstlisting}
+
+\textbf{Structured Fields Requested}:
+\begin{itemize}
+\item \textbf{product\_name}: Main heading/title
+\item \textbf{description}: Complete product text
+\item \textbf{price}: Price exactly as shown (optional)
+\end{itemize}
+
+\vfill
+
+\textbf{Key Instruction}: Extract \textit{verbatim} - don't paraphrase or summarize
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Use Case 3: Structured Transcription - Output}
+\textbf{JSON Output} (showing 2 of 9 products):
+\begin{lstlisting}[basicstyle=\ttfamily\tiny]
+{
+  "product_count": 9,
+  "products": [
+    {
+      "product_name": "Hand Telephone for Two-Station Line",
+      "description": "A very compact, thoroughly high 
+grade hand telephone that can be placed on a table or 
+hung on the wall. The rectangular box contains a 
+calling buzzer and has a hook for hanging up the 
+phone. However, it is not necessary to hang it up to 
+shut off the phone; just lay it on the table...",
+      "price": "$10.60, $11.60, $8.47"
+    },
+    {
+      "product_name": "Wall Telephone for Two-Station Line",
+      "description": "A very efficient and nice appearing 
+telephone built for single line service...",
+      "price": "$6.35, $7.35, $8.47"
+    },
+    ...
+  ]
+}
+\end{lstlisting}
+
+\textbf{Result}: Structured, queryable data ready for analysis
+\end{frame}
+
+\begin{frame}\frametitle{Use Case 4: Image Extraction - Overview}
+\textbf{Task}: Detect and extract product images
+
+\textbf{Purpose}:
+\begin{itemize}
+\item Extract visual elements from documents
+\item Build image datasets
+\item Create product catalogs with images
+\end{itemize}
+
+\vfill
+
+\textbf{Key Features}:
+\begin{itemize}
+\item Uses Gemini's object detection
+\item Returns precise bounding boxes
+\item Two-pass refinement for accuracy
+\item Automatic deduplication
+\end{itemize}
+
+\vfill
+
+\textbf{When to Use}:
+\begin{itemize}
+\item Extract product images
+\item Build visual databases
+\item Isolate figures from text
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Use Case 4: Image Extraction - Prompt}
+\textbf{Detection Prompt} (\texttt{06\textunderscore image\textunderscore extraction.py}):
+
+\begin{lstlisting}[basicstyle=\ttfamily\scriptsize]
+Detect every standalone TELEPHONE HARDWARE 
+product on this page.
+
+Return only the device hardware (exclude people, 
+scenes, captions, prices, borders).
+
+CRITICAL: Detect each device ONCE only.
+
+Boxing rules:
+- Box is tight to outermost pixels of device
+- Do not include labels, shadows, borders, text
+- Format: [ymin, xmin, ymax, xmax] 
+  normalized to 0-1000
+- Add a label and confidence score [0,1]
+
+Output JSON array: [
+  {"label":"Wall telephone","score":0.94,
+   "box_2d":[123.4, 567.8, 245.6, 678.9]},
+  ...
+]
+\end{lstlisting}
+
+\textbf{Structured Info}: label, confidence score, bounding box coordinates
+\end{frame}
+
+\begin{frame}\frametitle{Use Case 4: Image Extraction - Output}
+\begin{center}
+\textbf{Annotated Image with Detected Objects}
+
+\includegraphics[height=0.55\textheight,keepaspectratio]{../int_data/segmentation_files/annotated_image.png}
+\end{center}
+
+\vfill
+
+\textbf{Results}:
+\begin{itemize}
+\item 9 telephone devices detected and extracted
+\item Each saved as individual PNG file
+\item Bounding boxes with labels and confidence scores
+\item Two-pass refinement for precise alignment
+\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{Dealing with Errors Part 1: Bootstrapping}
+\textbf{Challenge}: Models aren't perfect—expect transcription errors
+
+\textbf{Bootstrapping Approach}:
+\begin{itemize}
+\item \textbf{Use high temperature settings}
+\begin{itemize}
+\item Run same input multiple times with high temperature
+\item Introduces randomness in model outputs
+\item Compare outputs for consistency
+\end{itemize}
+\vfill
+\item \textbf{Alternative prompt designs}
+\begin{itemize}
+\item Rephrase the same task in different ways
+\item Compare responses across prompt variations
+\item Identify which prompts yield most consistent results
+\end{itemize}
+\vfill
+\item \textbf{Consistency checking}
+\begin{itemize}
+\item Outputs that agree across runs/prompts are likely correct
+\item Disagreements flag potential errors for review
+\item Build confidence in extracted data
+\end{itemize}
+\vfill
+\item \textbf{Quality improvement}
+\begin{itemize}
+\item Use clean images (see \texttt{01\textunderscore load\textunderscore light\textunderscore preprocess\textunderscore image.R})
+\item Structured outputs reduce parsing errors
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{Dealing with Errors Part 2: Human-in-the-Loop \& Model Training}
+\textbf{Human-in-the-Loop (HITL)}:
+\begin{itemize}
+\item \textbf{Active learning approach}
+\begin{itemize}
+\item Model flags uncertain predictions
+\item Human expert reviews and corrects
+\item System learns from corrections
+\end{itemize}
+\vfill
+\item \textbf{Quality assurance workflows}
+\begin{itemize}
+\item Random sampling for spot checks
+\item Confidence thresholds for review
+\item Double-entry for critical data
+\end{itemize}
+\end{itemize}
+\vfill
+\textbf{Model Fine-Tuning}:
+\begin{itemize}
+\item Use corrected examples to fine-tune models
+\item Domain-specific adaptation (your documents)
+\item Improves accuracy on similar materials
+\item Balance cost vs. benefit of custom models
+\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{Summary and Best Practices}
+\begin{itemize}
+\item \textbf{Multimodal LLMs enable end-to-end digitization}
+\begin{itemize}
+\item Classification, transcription, structuring, extraction
+\item Single API for multiple tasks
+\end{itemize}
+\vfill
+\item \textbf{Key success factors}:
+\begin{itemize}
+\item Start with clean images when possible
+\item Use structured outputs (Pydantic schemas)
+\item Iterate on prompts based on results
+\item Validate with gold standard data
+\item Implement HITL for quality control
+\end{itemize}
+\vfill
+\item \textbf{Scalability}:
+\begin{itemize}
+\item Process large collections programmatically
+\item Batch processing with error handling
+\item Track costs and performance metrics
+\end{itemize}
+\vfill
+\item \textbf{Code repository}: Tutorial scripts available in project directory
+\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{Pricing: Cost per Page}
+\small
+\begin{table}
+\centering
+\begin{tabular}{lcc}
+\toprule
+\textbf{Use Case} & \textbf{Gemini 2.5 Pro} & \textbf{Gemini 2.5 Flash} \\
+\midrule
+Binary Classification & \$0.003 & \$0.001 \\
+Pure Transcription & \$0.007 & \$0.002 \\
+Structured Transcription & \$0.017 & \$0.004 \\
+Image Extraction & \$0.007 & \$0.002 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\vfill
+
+\textbf{Key Pricing Facts}:
+\begin{itemize}
+\item \textbf{Gemini 2.5 Pro}: \$1.25/1M input tokens, \$10.00/1M output tokens
+\item \textbf{Gemini 2.5 Flash}: \$0.30/1M input tokens, \$2.50/1M output tokens
+\item \textbf{Flash is $\sim$4× cheaper} for typical tasks
+\end{itemize}
+
+\vfill
+
+\textbf{Volume Estimates}:
+\begin{itemize}
+\item 1,000 pages pure transcription: Flash $\sim$\$2 vs Pro $\sim$\$7
+\item 1,000 pages structured: Flash $\sim$\$4 vs Pro $\sim$\$17
+\item Each image = 1 PDF page $\approx$ 1,290 tokens
+\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{}
+\centering
+\Huge{Thank you!}
+\bigskip
+
+\normalsize
+\textbf{Questions?}
+\end{frame}
+
+\end{document}
