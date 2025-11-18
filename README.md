@@ -2,7 +2,7 @@
 
 Reproducible digitization workflow (R/Python scripts + slides). This repo demonstrates a pipeline to preprocess images/PDFs, run binary and structured OCR/transcription, and extract images and structured data, together with LaTeX slides describing the approach.
 
-Affiliation: University of Warwick’s CAGE (Competitive Advantage in the Global Economy) Institute — https://warwick.ac.uk/fac/soc/economics/research/centres/cage/
+Affiliation: University of Warwick’s [CAGE](https://warwick.ac.uk/fac/soc/economics/research/centres/cage/)
 
 Download the slides (PDF): [Direct download](https://github.com/pjlambert/digitization_documents_with_gemini_tutorial/raw/main/slides/digitization_tutorial_slides.pdf?download=1) • [View on GitHub](https://github.com/pjlambert/digitization_documents_with_gemini_tutorial/blob/main/slides/digitization_tutorial_slides.pdf)
 
