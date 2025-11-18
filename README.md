@@ -2,6 +2,10 @@
 
 Reproducible digitization workflow (R/Python scripts + slides). This repo demonstrates a pipeline to preprocess images/PDFs, run binary and structured OCR/transcription, and extract images and structured data, together with LaTeX slides describing the approach.
 
+Affiliation: University of Warwick’s CAGE (Competitive Advantage in the Global Economy) Institute — https://warwick.ac.uk/fac/soc/economics/research/centres/cage/
+
+Download the slides (PDF): [digitization_tutorial_slides.pdf](https://raw.githubusercontent.com/pjlambert/digitization_documents_with_gemini_tutorial/main/slides/digitization_tutorial_slides.pdf)
+
 ## Repository structure
 
 - `scripts/` — Workflow scripts:
@@ -16,7 +20,7 @@ Reproducible digitization workflow (R/Python scripts + slides). This repo demons
 - `int_data/` — Intermediate artifacts (images, JSON, CSV). `int_data/output/` contains derived CSVs (ignored by Git by default).
 - `slides/` — LaTeX slides. Built PDF is committed: `slides/digitization_tutorial_slides.pdf` (tracked with Git LFS). Other LaTeX build artifacts remain ignored.
 
-Direct link to slides PDF: [slides/digitization_tutorial_slides.pdf](slides/digitization_tutorial_slides.pdf)
+
 
 ## Prerequisites
 - Git, Git LFS: https://git-scm.com/ and https://git-lfs.com/
