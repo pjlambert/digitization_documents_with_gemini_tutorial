@@ -61,6 +61,8 @@ Download the slides (PDF): [Direct download](https://github.com/pjlambert/digiti
    - Grant via IAM: https://console.cloud.google.com/iam-admin/iam
 
 ## Quickstart
+
+macOS/Linux
 1) Authenticate with Google Cloud (if using the GCP features):
    ```bash
    bash scripts/00_auth.sh
@@ -71,6 +73,35 @@ Download the slides (PDF): [Direct download](https://github.com/pjlambert/digiti
    ```
 3) Run the pipeline components as needed, for example:
    ```bash
+   Rscript scripts/01_load_light_preprocess_image.R
+   python scripts/02_binary_classify.py
+   python scripts/03_pure_transcription.py
+   python scripts/04_struct_transcription.py
+   python scripts/05_struct_transcription_and_classify.py
+   python scripts/06_image_extraction.py
+   ```
+
+Windows (PowerShell)
+Option A (recommended): Use WSL
+- Install WSL and Ubuntu: https://learn.microsoft.com/windows/wsl/install
+- Open the Ubuntu (WSL) terminal and run the same macOS/Linux commands above.
+
+Option B: Native PowerShell
+1) Set environment variables for the current session:
+   ```powershell
+   $env:GOOGLE_CLOUD_PROJECT="your-project-id"
+   $env:GOOGLE_CLOUD_LOCATION="us-central1"
+   ```
+2) Authenticate with Google Cloud (opens a browser):
+   ```powershell
+   gcloud auth application-default login
+   ```
+3) Ensure Git LFS is installed and initialized:
+   ```powershell
+   git lfs install
+   ```
+4) Run the pipeline components:
+   ```powershell
    Rscript scripts/01_load_light_preprocess_image.R
    python scripts/02_binary_classify.py
    python scripts/03_pure_transcription.py
