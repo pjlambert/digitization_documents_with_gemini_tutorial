@@ -1,4 +1,4 @@
-# digitization-tutorial
+# Tutorial for Digitization with Gemini
 
 Reproducible digitization workflow (R/Python scripts + slides). This repo demonstrates a pipeline to preprocess images/PDFs, run binary and structured OCR/transcription, and extract images and structured data, together with LaTeX slides describing the approach.
 
@@ -16,7 +16,7 @@ Download the slides (PDF): [digitization_tutorial_slides.pdf](https://raw.github
   - `04_struct_transcription.py` — Structured transcription (Python)
   - `05_struct_transcription_and_classify.py` — Combined pipeline (Python)
   - `06_image_extraction.py` — Image extraction (Python)
-- `raw_data/` — Source PDFs and inputs (tracked with Git LFS)
+
 - `int_data/` — Intermediate artifacts (images, JSON, CSV). `int_data/output/` contains derived CSVs (ignored by Git by default).
 - `slides/` — LaTeX slides. Built PDF is committed: `slides/digitization_tutorial_slides.pdf` (tracked with Git LFS). Other LaTeX build artifacts remain ignored.
 
@@ -50,7 +50,7 @@ Download the slides (PDF): [digitization_tutorial_slides.pdf](https://raw.github
 
 ## Notes on data and LFS
 - Large binaries (`*.pdf`, `*.png`, `*.jpg`, `*.jpeg`, `*.tif`, `*.tiff`) are tracked via Git LFS.
-- Ensure you have the right to redistribute any files placed in `raw_data/`. If redistribution is restricted, consider excluding such files and adding instructions to acquire them.
+
 
 ## License
 MIT — see `LICENSE`.
