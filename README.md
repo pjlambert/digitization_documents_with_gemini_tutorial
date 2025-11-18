@@ -4,7 +4,7 @@ Reproducible digitization workflow (R/Python scripts + slides). This repo demons
 
 Affiliation: University of Warwick’s CAGE (Competitive Advantage in the Global Economy) Institute — https://warwick.ac.uk/fac/soc/economics/research/centres/cage/
 
-Download the slides (PDF): [digitization_tutorial_slides.pdf](https://raw.githubusercontent.com/pjlambert/digitization_documents_with_gemini_tutorial/main/slides/digitization_tutorial_slides.pdf)
+Download the slides (PDF): [Direct download](https://github.com/pjlambert/digitization_documents_with_gemini_tutorial/raw/main/slides/digitization_tutorial_slides.pdf?download=1) • [View on GitHub](https://github.com/pjlambert/digitization_documents_with_gemini_tutorial/blob/main/slides/digitization_tutorial_slides.pdf)
 
 ## Repository structure
 
